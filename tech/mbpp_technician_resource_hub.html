@@ -10338,8 +10338,38 @@
           return;
         }
 
-        removeBrowserStorage(CONTENT_EDIT_STORAGE_KEY);
-        location.reload();
+        resetBrowserStorageForThisFile();
+        initializeHubData();
+        activeRole = ROLE_SECTIONS[SAVE_PROFILE.mainRole]
+          ? SAVE_PROFILE.mainRole
+          : DEFAULT_ROLE;
+        loadRoleContent(activeRole);
+        synchronizeGlobalCards(activeRole);
+
+        activeEditorContext = null;
+        activeEditorSnapshot = null;
+        editSessionSnapshot = null;
+        clearUndoOffer();
+        clearLayoutDragUi();
+        document.body.classList.remove("edit-mode", "edit-hint", "link-help-mode");
+        document
+          .querySelectorAll("dialog[open]")
+          .forEach((dialog) => dialog.close());
+
+        renderDashboard();
+        renderQuickAccess();
+        applyTestGroups();
+        applyContacts();
+        applyDropdowns();
+        applyLinks();
+        addInlineLinkEditors();
+        setEditableTextState();
+        updateRoleUi();
+        updateUtilityToolbarState();
+        updateGlobalContentUi();
+        updateEditModeSaveState("Autosave on", false);
+        document.getElementById("editStatus").textContent =
+          "Saved browser edits cleared. Built-in file values restored.";
       }
 
       function cancelEditSession() {
