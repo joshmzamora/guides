@@ -4,7 +4,93 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ExxonMobil MBPP Lab Guides</title>
+    <base href="./" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" sizes="any" />
+    <script>
+      document.documentElement.dataset.localFile = String(window.location.protocol === "file:");
+    </script>
+    <style>
+      .technician-playbook .playbook-intro,
+      .playbook-case-copy small,
+      .playbook-controlled-note {
+        display: none;
+      }
+
+      .playbook-case {
+        overflow: hidden;
+      }
+
+      .playbook-case summary {
+        transition:
+          background-color 170ms ease,
+          transform 220ms ease;
+      }
+
+      .playbook-case summary:hover,
+      .playbook-case summary:focus-visible {
+        transform: translateX(4px);
+      }
+
+      .playbook-case-toggle {
+        transition:
+          background-color 170ms ease,
+          transform 240ms ease;
+      }
+
+      .playbook-case[open] .playbook-case-toggle {
+        transform: rotate(180deg);
+      }
+
+      .playbook-response-grid {
+        overflow: hidden;
+      }
+
+      .playbook-response {
+        --response-index: 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition:
+          opacity 220ms ease,
+          transform 260ms ease;
+        transition-delay: calc(var(--response-index) * 45ms);
+      }
+
+      .playbook-response:nth-child(2) {
+        --response-index: 1;
+      }
+
+      .playbook-response:nth-child(3) {
+        --response-index: 2;
+      }
+
+      .playbook-response:nth-child(4) {
+        --response-index: 3;
+      }
+
+      .playbook-case[open] .playbook-response {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      html[data-local-file="true"] #introVideoModule {
+        display: none !important;
+      }
+
+      html[data-local-file="true"] .welcome-panel.movie-panel {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .playbook-case summary,
+        .playbook-case-toggle,
+        .playbook-response {
+          transition: none;
+          transform: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="full-app">
@@ -190,5 +276,452 @@
     </div>
 
     <script src="app.js"></script>
+    <script>
+      (() => {
+        const resourcesContent = document.querySelector("#resourcesContent");
+        const animationTimers = new WeakMap();
+        const animationTokens = new WeakMap();
+        let openRequestId = 0;
+
+        const prefersReducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches || false;
+
+        function resetPanel(panel) {
+          panel.style.height = "";
+          panel.style.opacity = "";
+          panel.style.overflow = "";
+          panel.style.transform = "";
+          panel.style.transition = "";
+        }
+
+        function syncSummary(details) {
+          const summary = details.querySelector("summary");
+          if (summary) {
+            summary.setAttribute("aria-expanded", details.open ? "true" : "false");
+          }
+        }
+
+        function intendedOpen(details) {
+          if (details.dataset.targetOpen === "true") return true;
+          if (details.dataset.targetOpen === "false") return false;
+          return details.open;
+        }
+
+        function finishAnimation(details, panel, open, token) {
+          if (token && animationTokens.get(details) !== token) return;
+
+          const timer = animationTimers.get(details);
+          if (timer) window.clearTimeout(timer);
+          animationTimers.delete(details);
+          animationTokens.delete(details);
+
+          details.open = open;
+          details.dataset.targetOpen = String(open);
+          delete details.dataset.animating;
+          resetPanel(panel);
+          syncSummary(details);
+        }
+
+        function stopCurrentAnimation(details, panel) {
+          if (details.dataset.animating !== "true") return;
+
+          const targetOpen = intendedOpen(details);
+          finishAnimation(details, panel, targetOpen, animationTokens.get(details));
+        }
+
+        function animateCase(details, panel, open) {
+          return new Promise((resolve) => {
+            const token = Symbol("playbook-dropdown");
+            const duration = open ? 360 : 330;
+            let settled = false;
+
+            animationTokens.set(details, token);
+            details.dataset.animating = "true";
+            details.dataset.targetOpen = String(open);
+
+            function settle() {
+              if (settled) return;
+              settled = true;
+              panel.removeEventListener("transitionend", handleTransitionEnd);
+              finishAnimation(details, panel, open, token);
+              resolve();
+            }
+
+            function handleTransitionEnd(event) {
+              if (event.target === panel && event.propertyName === "height") {
+                settle();
+              }
+            }
+
+            if (open) {
+              details.open = true;
+              syncSummary(details);
+              panel.style.height = "0px";
+              panel.style.opacity = "0";
+              panel.style.overflow = "hidden";
+              panel.style.transform = "translateY(-8px)";
+              panel.style.transition = "height 260ms ease, opacity 220ms ease, transform 260ms ease";
+
+              window.requestAnimationFrame(() => {
+                if (animationTokens.get(details) !== token) return;
+                panel.style.height = `${panel.scrollHeight}px`;
+                panel.style.opacity = "1";
+                panel.style.transform = "translateY(0)";
+              });
+            } else {
+              details.open = true;
+              syncSummary(details);
+              panel.style.height = `${panel.scrollHeight}px`;
+              panel.style.opacity = "1";
+              panel.style.overflow = "hidden";
+              panel.style.transform = "translateY(0)";
+              panel.style.transition = "height 240ms ease, opacity 180ms ease, transform 240ms ease";
+
+              window.requestAnimationFrame(() => {
+                if (animationTokens.get(details) !== token) return;
+                panel.style.height = "0px";
+                panel.style.opacity = "0";
+                panel.style.transform = "translateY(-8px)";
+              });
+            }
+
+            panel.addEventListener("transitionend", handleTransitionEnd);
+            animationTimers.set(details, window.setTimeout(settle, duration));
+          });
+        }
+
+        function setCaseOpen(details, open, { animate = true } = {}) {
+          const panel = details.querySelector(".playbook-response-grid");
+          if (!panel) {
+            details.open = open;
+            details.dataset.targetOpen = String(open);
+            syncSummary(details);
+            return Promise.resolve();
+          }
+
+          stopCurrentAnimation(details, panel);
+
+          if (details.open === open && intendedOpen(details) === open) {
+            details.dataset.targetOpen = String(open);
+            syncSummary(details);
+            return Promise.resolve();
+          }
+
+          if (!animate || prefersReducedMotion()) {
+            finishAnimation(details, panel, open);
+            return Promise.resolve();
+          }
+
+          return animateCase(details, panel, open);
+        }
+
+        function getCases(playbook) {
+          return Array.from(playbook.querySelectorAll(".playbook-case"));
+        }
+
+        async function openOnly(details) {
+          const playbook = details.closest(".technician-playbook");
+          if (!playbook) return;
+
+          const requestId = ++openRequestId;
+          const otherOpenCases = getCases(playbook).filter((candidate) => candidate !== details && intendedOpen(candidate));
+          await Promise.all(otherOpenCases.map((candidate) => setCaseOpen(candidate, false)));
+
+          if (requestId === openRequestId) {
+            await setCaseOpen(details, true);
+          }
+        }
+
+        function enhancePlaybookCase(details) {
+          if (details.dataset.dropdownAnimated === "true") return;
+          const summary = details.querySelector("summary");
+          const panel = details.querySelector(".playbook-response-grid");
+          if (!summary || !panel) return;
+
+          details.dataset.dropdownAnimated = "true";
+          details.dataset.targetOpen = String(details.open);
+          summary.setAttribute("role", "button");
+          syncSummary(details);
+
+          summary.addEventListener("click", (event) => {
+            event.preventDefault();
+            const shouldOpen = !intendedOpen(details);
+
+            if (shouldOpen) {
+              openOnly(details);
+            } else {
+              openRequestId += 1;
+              setCaseOpen(details, false);
+            }
+          });
+        }
+
+        function cleanPlaybook() {
+          const playbook = resourcesContent?.querySelector(".technician-playbook");
+          if (!playbook) return;
+
+          playbook.querySelector(".playbook-intro")?.remove();
+          playbook.querySelectorAll(".playbook-case-copy small, .playbook-controlled-note").forEach((element) => {
+            element.remove();
+          });
+
+          let hasOpenCase = false;
+          getCases(playbook).forEach((details) => {
+            if (details.open) {
+              if (hasOpenCase) {
+                setCaseOpen(details, false, { animate: false });
+              } else {
+                hasOpenCase = true;
+              }
+            }
+            enhancePlaybookCase(details);
+          });
+        }
+
+        if (resourcesContent) {
+          new MutationObserver(cleanPlaybook).observe(resourcesContent, { childList: true, subtree: true });
+          cleanPlaybook();
+        }
+      })();
+    </script>
+    <script>
+      (() => {
+        const roleIntroScenes = {
+          employee: {
+            button: "Orientation Intro",
+            scenes: [
+              { theme: "welcome", title: ["Welcome,", "new MBPP employee."] },
+              { theme: "context", title: ["See how", "the lab supports", "plant decisions."] },
+              { theme: "context", title: ["Follow samples", "from request", "to trusted data."] },
+              { theme: "ready", title: ["Start the", "lab orientation."] },
+            ],
+          },
+          technician: {
+            button: "Technician Intro",
+            scenes: [
+              { theme: "welcome", title: ["Welcome,", "new lab technician."] },
+              { theme: "context", title: ["Build your", "first-week", "mental map."] },
+              { theme: "context", title: ["Learn what", "to stop, check,", "contact, and record."] },
+              { theme: "ready", title: ["Start the", "technician", "onboarding path."] },
+            ],
+          },
+        };
+
+        const introOverlay = document.querySelector("#welcomeIntro");
+        const introTitle = document.querySelector("#welcomeTitle");
+        const introVideo = document.querySelector("#introVideo");
+        const introVideoModule = document.querySelector("#introVideoModule");
+        const topbarIntroButton = document.querySelector("[data-intro-open]");
+        let activeRoleIntro = null;
+        let activeRoleIntroScene = 0;
+        let introSceneTimer = null;
+        let lastGuide = document.body.dataset.guide || null;
+
+        const prefersReducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches || false;
+        const currentRoleIntro = () => roleIntroScenes[document.body.dataset.guide] || null;
+
+        function clearSceneTimer() {
+          if (introSceneTimer) {
+            window.clearTimeout(introSceneTimer);
+            introSceneTimer = null;
+          }
+        }
+
+        function restoreInternIntroChrome() {
+          if (introVideoModule) {
+            introVideoModule.hidden = false;
+            introVideoModule.style.display = "";
+          }
+        }
+
+        function setRoleIntroScene(index, { instant = false } = {}) {
+          const scenes = activeRoleIntro?.scenes || [];
+          const target = Math.max(0, Math.min(scenes.length - 1, index));
+          const scene = scenes[target];
+          if (!scene || !introOverlay || !introTitle) return;
+
+          activeRoleIntroScene = target;
+          introOverlay.dataset.scene = scene.theme;
+          introOverlay.classList.remove("intro-video-scene", "intro-context-scene", "intro-ready-scene", "scene-changing");
+          introOverlay.classList.toggle("intro-context-scene", scene.theme === "context");
+          introOverlay.classList.toggle("intro-ready-scene", scene.theme === "ready");
+          introTitle.setAttribute("aria-label", scene.title.join(" "));
+          introTitle.innerHTML = scene.title.map((line) => `<span class="animate-title-line">${line}</span>`).join("");
+
+          if (introVideo) {
+            introVideo.pause();
+            introVideo.currentTime = 0;
+          }
+
+          if (!instant && !prefersReducedMotion()) {
+            void introOverlay.offsetWidth;
+            introOverlay.classList.add("scene-changing");
+            clearSceneTimer();
+            introSceneTimer = window.setTimeout(() => {
+              introOverlay.classList.remove("scene-changing");
+              introSceneTimer = null;
+            }, 980);
+          }
+        }
+
+        function setRoleIntroOpen(isOpen) {
+          if (!introOverlay || !activeRoleIntro) return;
+          clearSceneTimer();
+
+          if (isOpen) {
+            introOverlay.classList.remove("intro-active", "intro-complete", "intro-video-scene", "intro-context-scene", "intro-ready-scene", "scene-changing");
+            introOverlay.classList.add("active");
+            introOverlay.setAttribute("aria-hidden", "false");
+            document.body.classList.add("intro-is-open");
+
+            if (introVideo) {
+              introVideo.pause();
+              introVideo.currentTime = 0;
+            }
+            if (introVideoModule) {
+              introVideoModule.hidden = true;
+              introVideoModule.style.display = "none";
+            }
+
+            void introOverlay.offsetWidth;
+            window.requestAnimationFrame(() => {
+              introOverlay.classList.add("intro-active", "intro-complete");
+              setRoleIntroScene(0, { instant: true });
+            });
+            return;
+          }
+
+          introOverlay.classList.remove("active", "intro-active", "intro-complete", "intro-video-scene", "intro-context-scene", "intro-ready-scene", "scene-changing");
+          introOverlay.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("intro-is-open");
+          activeRoleIntro = null;
+          activeRoleIntroScene = 0;
+          restoreInternIntroChrome();
+        }
+
+        function updateIntroButton({ autoOpen = false } = {}) {
+          const guide = document.body.dataset.guide;
+          const roleIntro = currentRoleIntro();
+
+          if (!topbarIntroButton) return;
+
+          if (roleIntro) {
+            topbarIntroButton.hidden = false;
+            topbarIntroButton.textContent = roleIntro.button;
+            if (autoOpen) {
+              activeRoleIntro = roleIntro;
+              window.setTimeout(() => setRoleIntroOpen(true), 120);
+            }
+            return;
+          }
+
+          if (guide === "intern") {
+            topbarIntroButton.textContent = "Intern Intro";
+            restoreInternIntroChrome();
+          }
+        }
+
+        document.addEventListener(
+          "click",
+          (event) => {
+            const introOpen = event.target.closest?.("[data-intro-open]");
+            if (introOpen && currentRoleIntro()) {
+              event.preventDefault();
+              event.stopImmediatePropagation();
+              activeRoleIntro = currentRoleIntro();
+              setRoleIntroOpen(true);
+              return;
+            }
+
+            const introContinue = event.target.closest?.("[data-intro-continue]");
+            if (introContinue && activeRoleIntro) {
+              event.preventDefault();
+              event.stopImmediatePropagation();
+              if (activeRoleIntroScene >= activeRoleIntro.scenes.length - 1) {
+                setRoleIntroOpen(false);
+                return;
+              }
+              setRoleIntroScene(activeRoleIntroScene + 1);
+            }
+          },
+          true,
+        );
+
+        document.addEventListener(
+          "keydown",
+          (event) => {
+            if (event.key === "Escape" && activeRoleIntro) {
+              event.preventDefault();
+              event.stopImmediatePropagation();
+              setRoleIntroOpen(false);
+            }
+          },
+          true,
+        );
+
+        new MutationObserver(() => {
+          const guide = document.body.dataset.guide || null;
+          const guideChanged = guide !== lastGuide;
+          lastGuide = guide;
+          updateIntroButton({ autoOpen: guideChanged && !!roleIntroScenes[guide] });
+        }).observe(document.body, { attributes: true, attributeFilter: ["data-guide"] });
+
+        updateIntroButton();
+      })();
+    </script>
+    <script>
+      (() => {
+        const isLocalFile = window.location.protocol === "file:";
+        document.documentElement.dataset.localFile = String(isLocalFile);
+
+        function makeVideoOptional() {
+          const introVideo = document.querySelector("#introVideo");
+          const introVideoModule = document.querySelector("#introVideoModule");
+          if (introVideo) {
+            introVideo.pause();
+          }
+          if (introVideoModule) {
+            introVideoModule.hidden = true;
+            introVideoModule.style.display = "none";
+          }
+        }
+
+        function disableLocalVideoLoading() {
+          const introVideo = document.querySelector("#introVideo");
+          if (!introVideo) return;
+          introVideo.pause();
+          introVideo.preload = "none";
+          introVideo.removeAttribute("src");
+          introVideo.querySelectorAll("track").forEach((track) => track.removeAttribute("src"));
+          try {
+            introVideo.load();
+          } catch {
+            // Local file previews should not fail if the optional video cannot load.
+          }
+        }
+
+        const introVideo = document.querySelector("#introVideo");
+        introVideo?.addEventListener("error", makeVideoOptional, true);
+
+        if (!isLocalFile) return;
+
+        function keepLocalPreviewStable() {
+          makeVideoOptional();
+          disableLocalVideoLoading();
+        }
+
+        window.addEventListener("load", keepLocalPreviewStable);
+        document.addEventListener("DOMContentLoaded", () => {
+          keepLocalPreviewStable();
+          const introVideoModule = document.querySelector("#introVideoModule");
+          if (introVideoModule) {
+            new MutationObserver(keepLocalPreviewStable).observe(introVideoModule, {
+              attributes: true,
+              attributeFilter: ["hidden", "style", "class"],
+            });
+          }
+        });
+        keepLocalPreviewStable();
+      })();
+    </script>
   </body>
 </html>
