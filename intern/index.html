@@ -680,18 +680,35 @@
             introVideo.pause();
           }
           if (introVideoModule) {
-            introVideoModule.hidden = true;
-            introVideoModule.style.display = "none";
+            if (!introVideoModule.hidden) {
+              introVideoModule.hidden = true;
+            }
+            if (introVideoModule.style.display !== "none") {
+              introVideoModule.style.display = "none";
+            }
           }
         }
 
         function disableLocalVideoLoading() {
           const introVideo = document.querySelector("#introVideo");
           if (!introVideo) return;
+
+          let sourceChanged = false;
           introVideo.pause();
-          introVideo.preload = "none";
-          introVideo.removeAttribute("src");
-          introVideo.querySelectorAll("track").forEach((track) => track.removeAttribute("src"));
+          if (introVideo.preload !== "none") {
+            introVideo.preload = "none";
+            sourceChanged = true;
+          }
+          if (introVideo.hasAttribute("src")) {
+            introVideo.removeAttribute("src");
+            sourceChanged = true;
+          }
+          introVideo.querySelectorAll("track[src]").forEach((track) => {
+            track.removeAttribute("src");
+            sourceChanged = true;
+          });
+          if (!sourceChanged) return;
+
           try {
             introVideo.load();
           } catch {
@@ -714,7 +731,14 @@
           keepLocalPreviewStable();
           const introVideoModule = document.querySelector("#introVideoModule");
           if (introVideoModule) {
-            new MutationObserver(keepLocalPreviewStable).observe(introVideoModule, {
+            new MutationObserver(() => {
+              if (
+                !introVideoModule.hidden ||
+                introVideoModule.style.display !== "none"
+              ) {
+                keepLocalPreviewStable();
+              }
+            }).observe(introVideoModule, {
               attributes: true,
               attributeFilter: ["hidden", "style", "class"],
             });
