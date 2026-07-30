@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ExxonMobil MBPP Lab Guides</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="full-app">
+      <header class="app-topbar">
+        <a class="topbar-brand" href="#" data-guide-home aria-label="Return to guide selection">
+          <img src="assets/exxonmobil-logo.png" alt="ExxonMobil" />
+          <span id="guideBrandLabel">MBPP Lab Learning Center</span>
+        </a>
+        <div class="topbar-actions">
+          <button class="topbar-switch" type="button" data-switch-guide hidden>Switch Guide</button>
+          <button class="topbar-intro" type="button" data-intro-open hidden>Intern Intro</button>
+        </div>
+      </header>
+
+      <section
+        class="guide-disclaimer"
+        id="guideDisclaimer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="guideDisclaimerTitle"
+        aria-describedby="guideDisclaimerCopy"
+        aria-hidden="true"
+      >
+        <div class="guide-disclaimer-panel">
+          <span class="guide-disclaimer-kicker">Before you begin</span>
+          <h2 id="guideDisclaimerTitle">Training comes first.</h2>
+          <p id="guideDisclaimerCopy">
+            Unofficial learning aid. Official ExxonMobil training, site procedures, and supervisor direction always override this guide.
+          </p>
+          <button type="button" data-disclaimer-acknowledge>I understand</button>
+        </div>
+      </section>
+
+      <aside class="mobile-experience-note" id="mobileExperienceNote" aria-live="polite">
+        <div>
+          <strong>Best on a computer</strong>
+          <span>This guide works on your phone, but the slideshow and test cards are easier to follow on a larger screen.</span>
+        </div>
+        <button type="button" data-mobile-notice-dismiss>Got it</button>
+      </aside>
+
+      <main>
+        <section class="choice-screen audience-screen active" id="audienceView" aria-labelledby="audienceTitle">
+          <div class="audience-backdrop" aria-hidden="true">
+            <img src="assets/slide-08-lab-overview.png" alt="" />
+            <span class="audience-grid-lines"></span>
+          </div>
+
+          <div class="audience-shell">
+            <div class="audience-intro">
+              <p>Mont Belvieu Plastics Plant</p>
+              <h1 id="audienceTitle">Choose your<br />starting point.</h1>
+              <span>Select the guide that matches your role.</span>
+            </div>
+
+            <div class="audience-routes" aria-label="Available lab guides">
+              <button class="audience-route employee-route" type="button" data-guide-select="employee">
+                <span class="audience-route-index" aria-hidden="true">01</span>
+                <span class="audience-route-copy">
+                  <small>New ExxonMobil employees</small>
+                  <strong>MBPP Lab Orientation</strong>
+                  <span>A general orientation for employees who are new to MBPP and the laboratory.</span>
+                </span>
+                <span class="audience-route-arrow" aria-hidden="true">&rarr;</span>
+              </button>
+
+              <button class="audience-route technician-route" type="button" data-guide-select="technician">
+                <span class="audience-route-index" aria-hidden="true">02</span>
+                <span class="audience-route-copy">
+                  <small>New lab technicians</small>
+                  <strong>Technician Onboarding</strong>
+                  <span>A role-specific onboarding path for technicians entering MBPP laboratory work.</span>
+                </span>
+                <span class="audience-route-arrow" aria-hidden="true">&rarr;</span>
+              </button>
+
+              <button class="audience-route intern-route" type="button" data-guide-select="intern">
+                <span class="audience-route-index" aria-hidden="true">03</span>
+                <span class="audience-route-copy">
+                  <small>High school interns</small>
+                  <strong>Intern Guide</strong>
+                  <span>A guided introduction to MBPP, laboratory work, common tests, and safe shadowing.</span>
+                </span>
+                <span class="audience-route-arrow" aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="choice-screen" id="homeView" aria-labelledby="homeTitle" aria-hidden="true">
+          <h1 id="homeTitle" class="sr-only">Selected MBPP lab guide</h1>
+          <button class="choice-panel start-panel" type="button" data-view-target="slideshow">
+            <img class="choice-photo" src="assets/photo-plant.png" alt="Industrial polyethylene plant units and rail loading area." />
+            <span class="choice-number">01</span>
+            <strong id="startGuideTitle">Start Guide</strong>
+            <span class="choice-copy" id="startGuideCopy">Open the selected full-screen orientation.</span>
+          </button>
+          <button class="choice-panel resources-panel" type="button" data-view-target="resources">
+            <img class="choice-photo" src="assets/photo-lab-bench.png" alt="Polymer quality-control lab bench with pellet samples and instruments." />
+            <span class="choice-number">02</span>
+            <strong id="secondaryGuideTitle">Resources &amp; Guides</strong>
+            <span class="choice-copy" id="resourcesGuideCopy">Open official links, lab terminology, and sample-to-data references.</span>
+          </button>
+        </section>
+
+        <section class="slideshow-screen" id="slideshowView" aria-labelledby="slideTitle" aria-hidden="true">
+          <button class="secondary back-start-button slideshow-top-back" type="button" data-view-target="home">Back to Start</button>
+          <div class="slide-stage">
+            <div class="slide-meta-row">
+              <p class="eyebrow" id="slideEyebrow">Slide module</p>
+              <span id="slideCounter">1/1</span>
+            </div>
+            <div class="slide-progress" aria-hidden="true"><span id="slideProgress"></span></div>
+            <article class="simple-slide" id="slideContent" aria-live="polite"></article>
+          </div>
+          <nav class="deck-controls" aria-label="Slideshow controls">
+            <button class="secondary" type="button" data-slide-prev>Previous</button>
+            <button class="primary" type="button" data-slide-next>Next</button>
+          </nav>
+        </section>
+
+        <section class="resources-screen" id="resourcesView" aria-labelledby="resourcesTitle" aria-hidden="true">
+          <button class="secondary back-start-button resources-top-back" type="button" data-view-target="home">Back to Start</button>
+          <div class="resources-head">
+            <div>
+              <p class="eyebrow" id="resourcesEyebrow">Resources &amp; Guides</p>
+              <h2 id="resourcesTitle">Sources and lab reference.</h2>
+            </div>
+          </div>
+          <div class="resources-grid" id="resourcesContent"></div>
+        </section>
+      </main>
+
+      <section class="welcome-intro" id="welcomeIntro" aria-labelledby="welcomeTitle" aria-hidden="true">
+        <div class="welcome-bg" aria-hidden="true">
+          <img src="assets/photo-plant.png" alt="" />
+          <span class="welcome-red-wipe"></span>
+          <span class="welcome-grid"></span>
+          <span class="welcome-scan"></span>
+        </div>
+        <div class="intro-logo-splash" aria-hidden="true">
+          <img src="assets/exxonmobil-logo.png" alt="" />
+          <span>Mont Belvieu Plastics Plant Lab</span>
+        </div>
+        <div class="welcome-panel movie-panel" role="dialog" aria-modal="true">
+          <div class="intro-brand-lockup" aria-hidden="true">
+            <img src="assets/exxonmobil-logo.png" alt="" />
+          </div>
+          <div class="welcome-copy">
+            <h2 id="welcomeTitle" class="welcome-title" aria-label="Welcome, high school intern.">
+              <span class="animate-title-line">Welcome,</span>
+              <span class="animate-title-line">high school intern.</span>
+            </h2>
+          </div>
+          <aside class="welcome-video" id="introVideoModule" aria-label="ExxonMobil intern video">
+            <div class="video-label">
+              <span>Official Video</span>
+              <strong>Working at ExxonMobil: From Intern to Employee | ExxonMobil</strong>
+            </div>
+            <video
+              id="introVideo"
+              src="assets/Working at ExxonMobil From Intern to Employee ExxonMobil - ExxonMobil (1080p).mp4"
+              aria-label="Working at ExxonMobil: From Intern to Employee"
+              poster="assets/photo-plant.png"
+              controls
+              preload="metadata"
+              playsinline
+            >
+              <track
+                kind="captions"
+                src="assets/intern-video.en.vtt"
+                srclang="en"
+                label="English"
+                default
+              />
+            </video>
+          </aside>
+          <div class="welcome-actions">
+            <button class="primary enter-guide-button" type="button" data-intro-continue>Continue</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
