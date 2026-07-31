@@ -1535,10 +1535,20 @@ function renderResources() {
           .join("")}
       </div>
     </section>
-    <section class="resource-card sample-journey-row">
-      <div class="sample-journey-head">
+    <section class="resource-card resource-row sample-journey-row">
+      <header class="resource-section-header sample-journey-head">
+        <span class="resource-section-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <circle cx="8" cy="24" r="4"></circle>
+            <path d="M12 24h8"></path>
+            <rect x="20" y="18" width="12" height="12"></rect>
+            <path d="M32 24h8"></path>
+            <path d="m35 19 5 5-5 5"></path>
+          </svg>
+        </span>
         <h3>From pellet to defensible data</h3>
-      </div>
+        <span class="resource-section-count">${sampleJourneySteps.length} steps</span>
+      </header>
       <div class="sample-flow-map" aria-label="Animated sample-to-data lifecycle">
         <span class="sample-pellet" aria-hidden="true"></span>
         ${sampleJourneySteps
