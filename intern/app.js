@@ -1480,11 +1480,6 @@ function renderResources() {
         <div class="resource-section-title">
           <h3>${isEmployee ? "Official context and working references" : "Start with official ExxonMobil links"}</h3>
         </div>
-        ${
-          isEmployee
-            ? ""
-            : '<p class="resource-intro">Use these links to understand the company, MBPP, safety language, and polyethylene products. For real lab work, your mentor, site procedures, and official training always come first.</p>'
-        }
       </div>
       <div class="source-list">
         ${officialLinks
@@ -1510,11 +1505,6 @@ function renderResources() {
         <div class="resource-section-title">
           <h3>${isEmployee ? "MBPP lab terms and working roles" : "Lab words you may hear"}</h3>
         </div>
-        ${
-          isEmployee
-            ? ""
-            : '<p class="resource-intro">Use this as a quick decoder while you shadow. Open a category when a word shows up, then ask your mentor how that word is used at MBPP.</p>'
-        }
       </div>
       <div class="term-groups">
         ${labTermGroups
@@ -1546,11 +1536,6 @@ function renderResources() {
     <section class="resource-card sample-journey-row">
       <div class="sample-journey-head">
         <h3>From pellet to defensible data</h3>
-        ${
-          isEmployee
-            ? ""
-            : "<p>Follow one sample from the plant to the lab record. The goal is not just a number. The goal is a result someone can trust later.</p>"
-        }
       </div>
       <div class="sample-flow-map" aria-label="Animated sample-to-data lifecycle">
         <span class="sample-pellet" aria-hidden="true"></span>
