@@ -45,8 +45,8 @@ onboarding/index.html
 
 How it works:
 This is the MBPP lab onboarding guide. Open index.html and use the page
-controls to move through its sections and slides. The page uses app.js,
-styles.css, and the assets folder, so keep all intern files together.
+controls to move through its sections and slides. Its JavaScript is embedded
+inside index.html; keep styles.css and the assets folder with it.
 
 The onboarding intro includes a bundled video and captions. Keep the complete
 assets folder with the guide so the video can load when index.html is opened

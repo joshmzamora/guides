@@ -10,8 +10,8 @@ TO OPEN
 ABOUT THIS GUIDE
 
 This guide introduces the MBPP lab, common tests, good data practices, and
-helpful context for an intern's first few weeks. Keep index.html, app.js,
-styles.css, and the assets folder together.
+helpful context for an intern's first few weeks. Its JavaScript is embedded
+inside index.html; keep styles.css and the assets folder with it.
 
 The intro includes a bundled video and captions. Keep the complete assets
 folder with the guide so the video can load when index.html is opened directly
