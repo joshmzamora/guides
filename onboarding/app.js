@@ -1539,11 +1539,13 @@ function renderResources() {
       <header class="resource-section-header sample-journey-head">
         <span class="resource-section-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48" focusable="false">
-            <circle cx="8" cy="24" r="4"></circle>
-            <path d="M12 24h8"></path>
-            <rect x="20" y="18" width="12" height="12"></rect>
-            <path d="M32 24h8"></path>
-            <path d="m35 19 5 5-5 5"></path>
+            <rect x="4" y="19" width="8" height="10"></rect>
+            <path d="M12 24h7"></path>
+            <path d="m16 21 3 3-3 3"></path>
+            <rect x="20" y="19" width="8" height="10"></rect>
+            <path d="M28 24h7"></path>
+            <path d="m32 21 3 3-3 3"></path>
+            <rect x="36" y="19" width="8" height="10"></rect>
           </svg>
         </span>
         <h3>From pellet to defensible data</h3>
