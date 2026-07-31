@@ -2,7 +2,7 @@ const testWalkthroughs = [
   {
     name: "OCS Cast Film and Defect Review",
     area: "A-1 / film performance",
-    purpose: "Turns polyethylene into cast film and uses optical inspection to help understand film appearance, gels, total defect area, and defect trends.",
+    purpose: "Makes a thin film from the resin and checks it for gels and other visible defects.",
     sample: "Pellet or resin sample tied to a lot, grade, time, and test request.",
     internRole: "Observe the setup, identify hazards, map the sample-to-result flow, and ask how the technician knows the system is ready.",
     hazards: ["Hot polymer and hot equipment", "Rotating screws, chill rolls, and pinch points", "Static electricity", "Sharp scraper or shim-stock edges", "Pellet slip hazards"],
@@ -26,7 +26,7 @@ const testWalkthroughs = [
   {
     name: "Particle Size Distribution",
     area: "A-1 / resin or powder properties",
-    purpose: "Helps characterize polyethylene granules or powder so the plant understands material consistency and handling behavior.",
+    purpose: "Sorts the material by size so the lab can see the amount of fines, normal material, and oversize pieces.",
     sample: "Representative LLDPE or HDPE material with clear identity and handling history.",
     internRole: "Build a process map showing sample ID, preparation, measurement, calculation, result entry, and review.",
     hazards: ["Dust or fines depending on material", "Moving parts or sieves", "Manual handling", "Sample mix-up risk"],
@@ -50,7 +50,7 @@ const testWalkthroughs = [
   {
     name: "Bulk Density",
     area: "A-1 / physical properties",
-    purpose: "Measures how much polyethylene material occupies a known volume, supporting handling, packaging, and product consistency understanding.",
+    purpose: "Measures how much material fits in a known volume.",
     sample: "Granules or pellets with traceable sample identity.",
     internRole: "Observe how the sample is prepared, how the measurement volume is controlled, and where the official result is recorded.",
     hazards: ["Pellet spill slip hazard", "Manual handling", "Incorrect sample conditioning or container use"],
@@ -74,7 +74,7 @@ const testWalkthroughs = [
   {
     name: "Melt Index",
     area: "Physical property testing",
-    purpose: "Helps describe polymer flow behavior under controlled conditions, which can matter for processing and product performance.",
+    purpose: "Measures how easily the resin flows when it is heated under set conditions.",
     sample: "Polyethylene sample associated with grade, lot, and required method.",
     internRole: "Learn what conditions are controlled, which parts may be hot, and how calibration or checks support trust in the result.",
     hazards: ["Hot barrel or die", "Cutting tools", "Moving weights or mechanisms", "Burn risk"],
@@ -98,7 +98,7 @@ const testWalkthroughs = [
   {
     name: "Density / Ash / Analytical Checks",
     area: "A-2 or other lab areas",
-    purpose: "Represents other physical or analytical checks that may support product quality, specification review, or investigation.",
+    purpose: "Covers property checks such as density and ash that help confirm the material is what the plant expects.",
     sample: "Material sample with clear identity and required test request.",
     internRole: "Ask what the test measures, what can go wrong, and what evidence shows the result is defensible.",
     hazards: ["Hot surfaces or furnaces depending on method", "Chemicals or sample preparation hazards", "Glassware or sharp tools", "Data transcription risk"],
@@ -122,7 +122,7 @@ const testWalkthroughs = [
   {
     name: "GC Purity Checks",
     area: "Analytical testing",
-    purpose: "Gas chromatography may be used for purity checks on materials referenced in the guide, such as Hexene-1, benzene, or isopentane.",
+    purpose: "Uses gas chromatography to check the composition or purity of selected materials.",
     sample: "Properly labeled sample or standard handled by trained personnel.",
     internRole: "Observe how sample identity, instrument method, standards, and chromatogram review connect to a reported result.",
     hazards: ["Chemicals and vapors", "Pressurized gases", "Glassware", "Instrument heat or electrical systems"],
@@ -150,9 +150,7 @@ const guideConfigs = {
     brand: "MBPP Lab Intern Guide",
     homeTitle: "Mont Belvieu Plastics Plant Lab Intern Guide",
     startTitle: "Start Intern Guide",
-    startCopy: "Walk through MBPP context, laboratory work, common tests, quality systems, and safe shadowing.",
     secondaryTitle: "Resources & Guides",
-    resourcesCopy: "Open official links, beginner lab terms, and a sample-to-data reference.",
     resourcesEyebrow: "Intern Guide / Resources",
     resourcesTitle: "Sources and lab language.",
   },
@@ -160,9 +158,7 @@ const guideConfigs = {
     brand: "MBPP Lab Orientation",
     homeTitle: "Mont Belvieu Plastics Plant Lab Orientation",
     startTitle: "Start Lab Orientation",
-    startCopy: "Review how the MBPP lab supports manufacturing, controls testing, and communicates reliable results.",
     secondaryTitle: "Resources & Guides",
-    resourcesCopy: "Open official sources, lab terminology, and a sample-to-data reference.",
     resourcesEyebrow: "MBPP Lab Orientation / Resources",
     resourcesTitle: "Sources and lab reference.",
   },
@@ -170,9 +166,7 @@ const guideConfigs = {
     brand: "MBPP Technician Onboarding",
     homeTitle: "Mont Belvieu Plastics Plant Technician Onboarding",
     startTitle: "First Week Overview",
-    startCopy: "See what your first week may look like, what to learn first, and how qualification begins.",
     secondaryTitle: "Technician Playbook",
-    resourcesCopy: "Open quick guidance for common situations: what to stop, check, contact, and record.",
     resourcesEyebrow: "Technician Playbook",
     resourcesTitle: "What do I do now?",
   },
@@ -187,9 +181,7 @@ const views = {
 const guideBrandLabel = document.querySelector("#guideBrandLabel");
 const homeTitle = document.querySelector("#homeTitle");
 const startGuideTitle = document.querySelector("#startGuideTitle");
-const startGuideCopy = document.querySelector("#startGuideCopy");
 const secondaryGuideTitle = document.querySelector("#secondaryGuideTitle");
-const resourcesGuideCopy = document.querySelector("#resourcesGuideCopy");
 const resourcesEyebrow = document.querySelector("#resourcesEyebrow");
 const resourcesTitle = document.querySelector("#resourcesTitle");
 const topbarBrand = document.querySelector("[data-guide-home]");
@@ -435,74 +427,68 @@ function getMaxRevealStep(slide) {
 
 const testExplainers = {
   "OCS Cast Film and Defect Review": {
+    menu: "OCS film review",
     short: "Film appearance and defects",
-    measures: "Makes a thin film from resin and checks what the film looks like.",
-    why: "Defects can affect how a customer sees or uses the plastic film.",
+    measures: "The resin is made into film and checked for gels and other visible defects.",
+    why: "The film can show problems that are hard to see in the pellets.",
     labUse: "The lab connects the film run, OCS output, sample ID, and comments.",
-    sampleEquipment:
-      "Polyethylene pellets, a cast-film setup, chill rolls, film-thickness checks, and the OCS camera/output that flags gels, lane patterns, and total defect area.",
-    mentorQuestion:
-      "How do you tell the difference between a real film defect and a setup issue like dirty chill rolls, film thickness, camera alignment, or material still purging through the system?",
+    sampleEquipment: "pellets, the cast-film line, chill rolls, and the OCS camera",
+    mentorQuestion: "What tells you the defect came from the resin and not the setup?",
     watch: ["Hot equipment and moving parts.", "How defects are named or counted.", "How unusual appearance is documented."],
     outputs: ["Film appearance rating", "Gel or defect counts", "Total defect area", "Sample ID and run comments"],
   },
   "Particle Size Distribution": {
+    menu: "Particle size",
     short: "How big the pieces are",
-    measures: "Sorts pellets, powder, or granules into size groups.",
-    why: "Size affects how material moves, feeds, blends, and handles.",
+    measures: "The sample is separated into size ranges.",
+    why: "Too many fines or oversize pieces can affect how the material handles.",
     labUse: "The lab checks whether the sample has the expected size profile.",
-    sampleEquipment:
-      "A representative pellet, powder, or granule sample plus a classifier or sieve-style setup, trays, and a balance to separate fines, normal-size material, and oversize pieces.",
-    mentorQuestion:
-      "What makes a sample representative, and what clues tell the technician the result is about the material instead of poor splitting, dirty equipment, or mixed-up identity?",
+    sampleEquipment: "a representative sample, the classifier or sieve setup, trays, and a balance",
+    mentorQuestion: "How do you know the sample represents the material?",
     watch: ["Clean equipment.", "Correct sample identity.", "Too many fines or oversized pieces."],
     outputs: ["Percent retained by size range", "Fines or oversize fraction", "Mass balance checks", "Representative sample notes"],
   },
   "Bulk Density": {
+    menu: "Bulk density",
     short: "How much fits in a space",
-    measures: "Measures how much pellet or powder mass fits into a known volume.",
-    why: "It matters for storage, packaging, loading, and equipment flow.",
+    measures: "A known volume is filled and the material in it is weighed.",
+    why: "The result helps explain how the material will store, package, and move.",
     labUse: "The lab uses the same fill method so samples can be compared fairly.",
-    sampleEquipment:
-      "Pellets or powder, a known-volume cup or cylinder, a balance, and a controlled fill method so the result is not just from packing the material differently.",
-    mentorQuestion:
-      "How can pouring, settling, static, fines, or moisture change the number, and what repeat check tells the lab the value is believable?",
+    sampleEquipment: "the sample, a known-volume cup, a balance, and a consistent fill method",
+    mentorQuestion: "What can make the same material give a different number?",
     watch: ["Pellet spills.", "Clean, dry containers.", "How repeat checks are handled."],
     outputs: ["Mass per volume", "Repeat measurements", "Sample condition notes", "Calculation or transcription checks"],
   },
   "Melt Index": {
+    menu: "Melt index",
     short: "How melted plastic flows",
-    measures: "Shows how easily polyethylene flows when it is heated.",
-    why: "Flow helps connect a resin to grade, processing, and customer use.",
+    measures: "The resin is heated and its flow is measured under set conditions.",
+    why: "Flow is one of the main ways the plant checks grade and processing behavior.",
     labUse: "The lab controls heat, timing, load, and instrument status before reporting.",
-    sampleEquipment:
-      "Polyethylene pellets, a melt-index instrument with a heated barrel, die/orifice, rod or weight system, timer/cutter, and method-specific temperature/load settings.",
-    mentorQuestion:
-      "Before trusting a melt-flow number, what do checks like rod movement, orifice condition, spacer alignment, balance, temperature/load, and SQC prove?",
+    sampleEquipment: "pellets, the heated barrel and die, the weight system, a timer, and a balance",
+    mentorQuestion: "Which readiness checks matter before you trust the result?",
     watch: ["Hot surfaces.", "Correct temperature and load.", "Timing and cleaning between runs."],
     outputs: ["Melt flow value", "Temperature and load condition", "Replicate agreement", "Instrument and method record"],
   },
   "Density / Ash / Analytical Checks": {
+    menu: "Density and ash",
     short: "Property and residue checks",
-    measures: "Checks properties like density or residue left after controlled testing.",
-    why: "Small property changes can matter for grade, formulation, or review.",
+    measures: "These methods check properties such as density or the residue left after heating.",
+    why: "Small changes can point to a grade, formulation, or sample problem.",
     labUse: "The lab connects each value to the method, instrument, standard, and sample prep.",
-    sampleEquipment:
-      "Depending on the method: prepared resin specimens or weighed material, density equipment, analytical balances, furnaces/ovens, XRF or other analytical instruments, and required standards or checks.",
-    mentorQuestion:
-      "When a property result surprises people, how does the lab decide whether to look first at sample prep, instrument configuration, calibration/SQC, trend data, or a real process change?",
+    sampleEquipment: "prepared samples, balances, density equipment, furnaces, or other analytical instruments",
+    mentorQuestion: "When a result looks wrong, what do you check first?",
     watch: ["Hot equipment or chemicals.", "Clean sample handling.", "Calibration or standard checks."],
     outputs: ["Density or ash value", "Calibration or standard check", "Preparation notes", "Review or retest documentation"],
   },
   "GC Purity Checks": {
+    menu: "GC purity",
     short: "Chemical purity check",
-    measures: "Separates chemicals so the lab can estimate purity or composition.",
-    why: "Composition can matter when chemical identity affects quality or process decisions.",
+    measures: "The GC separates components so the analyst can check purity or composition.",
+    why: "The result confirms that the material matches what the process expects.",
     labUse: "The lab relies on standards, instrument setup, sample identity, and review.",
-    sampleEquipment:
-      "A clearly labeled vial or standard, a GC instrument, the approved method/sequence, carrier gases, and the chromatogram data used to review peaks and purity.",
-    mentorQuestion:
-      "What does the analyst check in vial identity, standards, sequence setup, peak integration, and chromatogram review before a purity result is reported?",
+    sampleEquipment: "a labeled vial or standard, the GC, the run sequence, and the chromatogram",
+    mentorQuestion: "What do you review before reporting the purity result?",
     watch: ["Chemical and gas safety.", "Readable vial labels.", "How peaks are reviewed."],
     outputs: ["Component percentages or purity", "Chromatogram and peak integration", "Calibration status", "Sample and run sequence record"],
   },
@@ -513,31 +499,31 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 1 / ExxonMobil overview",
       label: "Company",
-      title: "Start with ExxonMobil",
+      title: "Where this work fits",
       lead:
-        "ExxonMobil is a large energy and chemical company. This guide focuses on one small part of that world: polyethylene manufacturing and the lab that supports it.",
+        "ExxonMobil has energy and chemical businesses around the world. This guide stays focused on the MBPP lab and the polyethylene it supports.",
       bullets: [],
       photo: slideVisuals.exxonCompany,
     }),
     createSlide({
       eyebrow: "Section 1 / ExxonMobil overview",
       label: "Materials",
-      title: "The chemical side makes materials",
+      title: "From pellets to products",
       lead:
-        "Chemical products can become the raw materials for packaging, films, containers, pipe, liners, and many other everyday items.",
+        "MBPP makes polyethylene resin. Customers use that resin to make film, packaging, pipe, containers, and other products.",
       bullets: [
-        "The product may start as small pellets.",
-        "Customers care about how those pellets perform.",
-        "Testing helps prove that performance is understood.",
+        "At the plant, the resin is often handled as pellets.",
+        "Different products need different resin properties.",
+        "The lab checks properties the plant and customer care about.",
       ],
       photo: slideVisuals.exxonProducts,
     }),
     createSlide({
       eyebrow: "Section 1 / ExxonMobil overview",
       label: "Operations",
-      title: "Reliable operations matter",
+      title: "Safe, steady work",
       lead:
-        "Manufacturing sites need safe, steady, controlled work. A small mistake can affect people, equipment, product quality, or customer trust.",
+        "A manufacturing site depends on people doing the basics well every time. Safety, clear procedures, and reliable data all matter.",
       bullets: [
         "Safety comes before speed.",
         "Procedures help people do work the same way.",
@@ -551,32 +537,32 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 2 / Mont Belvieu Plastics Plant",
       label: "Site",
-      title: "MBPP is a polyethylene site",
+      title: "About MBPP",
       lead:
-        "Mont Belvieu Plastics Plant is an ExxonMobil site in Chambers County, Texas that makes polyethylene products.",
+        "Mont Belvieu Plastics Plant is an ExxonMobil polyethylene site in Chambers County, Texas.",
       bullets: [
-        "Public fact sheet context: in operation since 1982.",
+        "The site has operated since 1982.",
         "The site is about 500 acres.",
-        "The plant is part of the Baytown-area ExxonMobil footprint.",
+        "It is part of ExxonMobil's Baytown-area operations.",
       ],
       photo: slideVisuals.mbppSite,
     }),
     createSlide({
       eyebrow: "Section 2 / Mont Belvieu Plastics Plant",
       label: "Polyethylene",
-      title: "What polyethylene is",
+      title: "Polyethylene, in plain terms",
       lead:
-        "Polyethylene is a plastic resin. At a plant, you may see it as pellets or other forms before customers turn it into products.",
+        "Polyethylene is a plastic resin. At MBPP, you will often see it as pellets before a customer turns it into a finished product.",
       bullets: [],
-      note: "Simple idea: the pellets may look plain, but their properties can change how they behave.",
+      note: "The pellets may look alike, but small property changes can affect how they run and perform.",
       photo: slideVisuals.mbppPolyethylene,
     }),
     createSlide({
       eyebrow: "Section 2 / Mont Belvieu Plastics Plant",
       label: "End uses",
-      title: "What polyethylene can become",
+      title: "What customers make with it",
       lead:
-        "Polyethylene can become films, packaging, bags, liners, pipe, and containers. Different uses need different material behavior.",
+        "Polyethylene can become film, bags, liners, pipe, packaging, and containers. Each use asks something different from the resin.",
       bullets: [
         "Film may need good appearance and toughness.",
         "Pipe or containers may need strength and consistency.",
@@ -587,13 +573,13 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 2 / Mont Belvieu Plastics Plant",
       label: "Samples",
-      title: "Why plant samples are tested",
+      title: "Why the lab tests samples",
       lead:
-        "A sample is a small piece of a much larger production story. Testing helps the plant understand whether the material is behaving as expected.",
+        "A sample gives the lab a look at material from the plant. The result helps show whether that material is behaving as expected.",
       bullets: [
-        "The sample must connect to the right lot, time, material, and request.",
-        "The lab result can support product quality review.",
-        "A confusing sample identity can make the result hard to defend.",
+        "The sample ID must match the lot, material, time, and request.",
+        "The result may support a plant or product-quality decision.",
+        "If the identity is unclear, stop and resolve it before testing.",
       ],
       photo: slideVisuals.mbppSampling,
     }),
@@ -603,52 +589,52 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 3 / The MBPP lab",
       label: "Purpose",
-      title: "What the lab does",
+      title: "The lab's job",
       lead:
-        "The Quality Control lab responds to manufacturing needs by testing samples and producing reliable product-quality data.",
+        "The lab tests plant samples and reports data people can use. The work needs to be safe, timely, and traceable.",
       bullets: [
         "Technicians run approved test methods.",
-        "They check instrument status and SQC when required.",
-        "They record and communicate results and issues.",
+        "They confirm the instrument and required controls are ready.",
+        "They record the result and speak up when something is wrong.",
       ],
       photo: slideVisuals.labPurpose,
     }),
     createSlide({
       eyebrow: "Section 3 / The MBPP lab",
       label: "Support",
-      title: "How the lab supports manufacturing",
+      title: "How the lab helps the plant",
       lead:
-        "The lab does not make the product. It helps the plant understand the product by turning samples into controlled information.",
+        "The lab turns a physical sample into information the plant can act on.",
       bullets: [
-        "Results may help with product quality review.",
-        "Unusual results may trigger questions or troubleshooting.",
-        "Clear communication helps the plant respond quickly.",
+        "Routine results show whether the material is tracking normally.",
+        "An unusual result may lead to a review or troubleshooting.",
+        "Clear communication keeps the next person from guessing.",
       ],
       photo: slideVisuals.labSupport,
     }),
     createSlide({
       eyebrow: "Section 3 / The MBPP lab",
       label: "Workflow",
-      title: "Sample to result",
+      title: "From sample to result",
       lead:
-        "A sample journey usually moves from plant context, to lab receipt, to testing, to review, to a retained result in Sample Manager or another approved record.",
+        "The basic path is receipt, identity check, preparation, testing, review, and a final record in Sample Manager or another approved system.",
       bullets: [
-        "Identity comes first: what is this sample and where did it come from?",
-        "The method tells trained personnel how to test it.",
-        "The record should show what happened later.",
+        "First, confirm what the sample is and where it came from.",
+        "Then follow the current method and required checks.",
+        "Leave enough of a record for someone to retrace the work.",
       ],
       photo: slideVisuals.labWorkflow,
     }),
     createSlide({
       eyebrow: "Section 3 / The MBPP lab",
       label: "Trust",
-      title: "What good lab data means",
+      title: "What makes data useful",
       lead:
-        "The quality manual language can be simplified like this: good data should be correct, on time, repeatable, honest, and traceable.",
+        "Good lab data is correct, available when it is needed, and clear enough for someone else to follow.",
       bullets: [
-        "Accurate: the number should be right.",
-        "Timely: it should arrive soon enough to be useful.",
-        "Traceable: someone can reconstruct the sample, method, instrument, and result later.",
+        "The number matches the sample and method.",
+        "Required checks and reviews are complete.",
+        "The sample, instrument, raw data, and final result stay connected.",
       ],
       photo: slideVisuals.labTrust,
     }),
@@ -658,9 +644,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 4 / Common lab tests",
       label: "Test index",
-      title: "Common tests you may hear about",
+      title: "Six tests you'll hear about",
       lead:
-        "Each test answers a different question about the material. You do not need to run these tests. Your job is to understand what question each test helps answer.",
+        "Start by learning what each test measures and why the lab uses it. You are not running them yet.",
       bullets: [],
       kind: "test-menu",
       photo: slideVisuals.testMenu,
@@ -681,11 +667,11 @@ function getWalkthroughSlides() {
       eyebrow: `Section 4 / Common lab tests / ${test.area}`,
       label: `Test ${index + 1}`,
       title: test.name,
-      lead: `${details.measures} In plain English, this test helps the plant understand ${details.short.toLowerCase()}.`,
+      lead: details.measures,
       bullets: [
-        `Why the plant cares: ${details.why}`,
-        `Sample or equipment involved: ${details.sampleEquipment}`,
-        `What to ask a mentor: ${details.mentorQuestion}`,
+        details.why,
+        `You will usually see ${details.sampleEquipment}.`,
+        `Ask your mentor: "${details.mentorQuestion}"`,
       ],
       testIndex: index,
       photo: testPhotos[index],
@@ -696,9 +682,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 5 / Safety and quality systems",
       label: "Safety",
-      title: "Safety is part of quality work",
+      title: "Do the work safely or stop",
       lead:
-        "A lab result is not worth getting if the work is unsafe. In an industrial lab, PPE, training, procedures, and mentor direction come first.",
+        "No result is worth bypassing a safety step. Stay within your training and ask before touching equipment, samples, or chemicals.",
       bullets: [
         "Do not touch equipment, samples, or chemicals without approval.",
         "Notice hot surfaces, moving parts, pellets on the floor, vapors, and sharp tools.",
@@ -709,9 +695,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 5 / Quality and data integrity",
       label: "Trust",
-      title: "What makes a result trustworthy",
+      title: "A number needs a story",
       lead:
-        "A trustworthy result is more than a number. It is a number with enough context to explain where it came from.",
+        "A result is only useful when the lab can explain where it came from and how it was produced.",
       bullets: [
         "Is the sample identity clear?",
         "Was the approved method and instrument used?",
@@ -722,9 +708,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 5 / Safety and quality systems",
       label: "Systems",
-      title: "Quality systems keep work consistent",
+      title: "The systems behind the work",
       lead:
-        "Systems like QP&G, DIAF, SQC, training records, calibration, and approved methods help the lab prove that work is controlled.",
+        "QP&G, DIAF, SQC, training records, calibration, and approved methods are how the lab keeps work controlled.",
       bullets: [
         "QP&G connects lab quality expectations to evidence.",
         "DIAF protects data integrity.",
@@ -735,19 +721,19 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 5 / Quality and data integrity",
       label: "Evidence",
-      title: "Data is treated like evidence",
+      title: "Treat data like evidence",
       lead:
-        "In a lab, data may support product review, investigations, reports, or customer confidence. That is why unclear data is taken seriously.",
+        "Lab data may be used in product review, an investigation, or a customer document. It needs to hold up later.",
       bullets: [],
-      note: "Beginner shortcut: if someone cannot explain where the result came from, the result is weaker.",
+      note: "If the result cannot be traced back to the work, it is not a strong result.",
       photo: slideVisuals.qualityEvidence,
     }),
     createSlide({
       eyebrow: "Section 5 / Quality and data integrity",
       label: "Review",
-      title: "Corrections and retests are not automatically bad",
+      title: "Corrections and retests need a reason",
       lead:
-        "A correction or retest can be valid. The important question is whether the reason is allowed, documented, and easy to understand later.",
+        "Sometimes a correction or retest is the right action. Keep the original evidence and document why the additional work was needed.",
       bullets: [
         "A typo correction should explain the source of the correct value.",
         "A retest should have an approved reason.",
@@ -758,9 +744,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 5 / Quality and data integrity",
       label: "Red flags",
-      title: "What makes a record worth asking about",
+      title: "When a record needs another look",
       lead:
-        "A red flag does not mean someone did something wrong. It means the record may need more context from a trained person.",
+        "A red flag is a reason to pause and ask for context. It is not a conclusion by itself.",
       bullets: [
         "A vague comment like “fixed result.”",
         "A retest with no clear reason.",
@@ -771,9 +757,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 5 / Quality and data integrity",
       label: "Boundary",
-      title: "What an intern can and cannot decide",
+      title: "Know where your role stops",
       lead:
-        "You can notice patterns, ask questions, and learn the review path. You cannot decide product status, diagnose equipment, or change data.",
+        "As an intern, you can notice something unusual and ask about it. You do not decide product status, diagnose equipment, or change data.",
       bullets: [
         "Say “this looks unusual,” not “this product failed.”",
         "Ask how the result is reviewed.",
@@ -787,9 +773,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 6 / Intern learning path",
       label: "Shadow",
-      title: "What to focus on while shadowing",
+      title: "What to watch while you shadow",
       lead:
-        "Do not try to memorize every button or number. Watch how trained people keep the work safe, controlled, and traceable.",
+        "Do not try to memorize every button. Watch how the technician prepares, checks, runs, and records the work.",
       bullets: [
         "What hazards are controlled before work starts?",
         "How does the technician know the instrument is ready?",
@@ -800,9 +786,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 6 / Intern learning path",
       label: "Ask",
-      title: "Good mentor questions",
+      title: "Questions worth asking",
       lead:
-        "A useful intern question connects what you see to why it matters.",
+        "Good questions help you connect a test step to the decision it supports.",
       bullets: [
         "What decision could this result support?",
         "What would make this result questionable?",
@@ -813,9 +799,9 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 6 / Intern learning path",
       label: "Reflect",
-      title: "Turn observations into notes",
+      title: "Write down what you saw",
       lead:
-        "Reflection notes help you remember what you saw and turn shadowing into a real learning activity.",
+        "A few clear notes are more useful than trying to remember the whole day.",
       bullets: [
         "Write what you observed in simple words.",
         "List one safety control and one quality control.",
@@ -826,11 +812,11 @@ function getWalkthroughSlides() {
     createSlide({
       eyebrow: "Section 6 / Intern learning path",
       label: "Project",
-      title: "Build useful intern activities",
+      title: "Turn the work into a small project",
       lead:
-        "Your observations can become process maps, mini quizzes, sample-journey diagrams, red-flag reviews, or mentor discussion prompts.",
+        "Use what you observed to build a process map, sample journey, short quiz, or mentor discussion guide.",
       bullets: [],
-      note: "Best final habit: when something seems unclear, slow down and ask the assigned mentor or technician.",
+      note: "When something is unclear, slow down and ask the assigned mentor or technician.",
       photo: slideVisuals.internProject,
     }),
   ];
@@ -847,12 +833,12 @@ function getEmployeeSlides() {
       title: test.name,
       lead: test.purpose,
       bullets: [
-        `Measurement focus: ${details.measures}`,
-        `Operational relevance: ${details.why}`,
-        `Typical outputs: ${details.outputs.join(", ")}.`,
+        details.why,
+        `Lab staff may use: ${details.sampleEquipment}.`,
+        `Results may include ${details.outputs.join(", ").toLowerCase()}.`,
       ],
       note:
-        "Equipment, method conditions, authorization, and reporting requirements come from current approved procedures and assigned training.",
+        "This is an overview, not test training. Only trained and authorized lab personnel perform the work.",
       photo: getTestPhoto(index),
     });
   });
@@ -861,63 +847,63 @@ function getEmployeeSlides() {
     createSlide({
       eyebrow: "Section 1 / Lab mission",
       label: "Orientation",
-      title: "The lab is a manufacturing control point",
+      title: "Lab purpose",
       lead:
-        "The MBPP lab converts representative samples into controlled, traceable results that support product quality and plant decisions.",
+        "The MBPP lab tests representative samples and gives the plant results it can use.",
       bullets: [
-        "Accurate: the method and instrument are suitable and controlled.",
-        "Timely: results arrive when the operation needs them.",
-        "Defensible: identity, raw data, entries, corrections, and review can be reconstructed.",
+        "Lab technicians use approved methods and equipment that is ready for service.",
+        "Lab results support production, quality, and product decisions.",
+        "The sample, raw data, result entry, and review remain connected.",
       ],
       photo: slideVisuals.labPurpose,
     }),
     createSlide({
       eyebrow: "Section 1 / Site context",
       label: "MBPP",
-      title: "Polyethylene production sets the context",
+      title: "MBPP products",
       lead:
-        "MBPP produces polyethylene products. The laboratory supports that operation by evaluating resin properties, appearance, consistency, and selected analytical characteristics.",
+        "MBPP makes polyethylene resin. The lab checks the properties, appearance, consistency, and selected analytical results that matter to that operation.",
       bullets: [
-        "Plant samples must remain connected to the correct material, lot, time, and request.",
-        "Results can inform manufacturing, quality review, product disposition, and customer documentation.",
-        "Operational urgency never removes safety, method, or data-integrity requirements.",
+        "Samples need the correct material or grade, lot, time, and request information.",
+        "Results may support manufacturing, quality review, product decisions, or customer records.",
+        "Urgent plant needs do not change the lab's safety, method, or record requirements.",
       ],
       photo: slideVisuals.mbppSite,
     }),
     createSlide({
       eyebrow: "Section 2 / Controlled workflow",
       label: "Lifecycle",
-      title: "One sample, one traceable data trail",
+      title: "Sample workflow",
       lead:
-        "The working sequence is sample receipt and identity, preparation, instrument readiness, approved testing, result review, and controlled record retention.",
+        "The normal path is receipt, identity check, preparation, equipment readiness, testing, review, and record retention.",
       bullets: [
-        "Resolve unclear identity, condition, priority, or test scope before work proceeds.",
-        "Record the sample, method, instrument, analyst, raw observations, calculations, and relevant comments.",
-        "Escalate unexpected results or control failures through the applicable procedure and role.",
+        "Lab staff resolve an unclear identity, condition, priority, or test request before testing.",
+        "The record shows what was tested, how it was tested, and who performed the work.",
+        "Unusual results and failed controls follow a defined review path.",
       ],
       photo: slideVisuals.labWorkflow,
     }),
     createSlide({
       eyebrow: "Section 2 / Controlled workflow",
       label: "Priorities",
-      title: "Identity and priority travel with the sample",
+      title: "Information the lab needs",
       lead:
-        "A technically correct measurement is not useful if it is attached to the wrong material or handled outside the required priority path.",
+        "Testing starts only after the sample can be connected to the correct plant context and request.",
       bullets: [
-        "Confirm sample ID, material or grade, lot, requested tests, and available context.",
-        "Use the established process for routine, priority, investigation, or special samples.",
-        "Do not infer missing identity or silently substitute a nearby sample or prior result.",
+        "The sample ID, material or grade, lot, requested tests, and priority need to be clear.",
+        "Routine, priority, investigation, and special samples may follow different paths.",
+        "If information is missing, the lab contacts the requesting group before testing.",
       ],
       photo: slideVisuals.mbppSampling,
     }),
     createSlide({
       eyebrow: "Section 3 / Common lab tests",
       label: "Test map",
-      title: "Six test families in this orientation",
+      title: "Common lab tests",
       lead:
-        "The following slides summarize what each test family measures and why the result matters. They are orientation, not operating instructions.",
+        "These slides explain what each test measures and why the plant may need the result.",
       bullets: [],
-      note: "Post assignments and approved procedures determine the exact method, equipment, and authorization required.",
+      note: "These are awareness slides, not instructions for performing lab work.",
       photo: slideVisuals.testMenu,
       kind: "test-menu",
     }),
@@ -925,55 +911,55 @@ function getEmployeeSlides() {
     createSlide({
       eyebrow: "Section 4 / Method control",
       label: "Readiness",
-      title: "Instrument readiness is part of the result",
+      title: "Equipment and method readiness",
       lead:
-        "Calibration, standards, SQC, maintenance status, cleanliness, and method conditions establish whether an instrument or method is ready for use.",
+        "Calibration, standards, SQC, maintenance status, cleanliness, and method conditions all help show that the system is ready.",
       bullets: [
-        "Review the required status and control evidence before relying on sample data.",
-        "Treat OOC indications as method-control signals that require the defined response.",
-        "Do not trade control for speed when the plant is waiting on a result.",
+        "Lab staff check the required status and control evidence before using sample data.",
+        "An out-of-control signal follows a defined response and review.",
+        "Plant urgency does not remove readiness checks.",
       ],
       photo: slideVisuals.qualitySystems,
     }),
     createSlide({
       eyebrow: "Section 4 / Data systems",
       label: "Traceability",
-      title: "Sample Manager is part of the evidence trail",
+      title: "Result traceability",
       lead:
-        "Sample Manager or LIMS connects sample requests, results, comments, and review records. Entries must match the source data and remain explainable later.",
+        "Sample Manager or LIMS connects the request, result, comments, and review. The entry needs to match the source data.",
       bullets: [
-        "Manual entries and transfers require the checks defined by the work process.",
-        "Corrections and retests need a valid reason, retained original evidence, and traceable review.",
-        "OOS and OOC events follow their applicable investigation and escalation processes.",
+        "Lab staff check manual entries and data transfers as required.",
+        "Original evidence remains available when data is corrected or a test is repeated.",
+        "Out-of-specification and out-of-control events follow the applicable review path.",
       ],
       photo: slideVisuals.qualityEvidence,
     }),
     createSlide({
       eyebrow: "Section 5 / People and escalation",
       label: "Roles",
-      title: "Know who owns the next decision",
+      title: "Lab support roles",
       lead:
-        "A-1, A-2, and A-3 posts have assigned responsibilities. The FLS, QAC or Chemist, QDS, and LES provide different operational, quality, data, and equipment support.",
+        "The A-1, A-2, and A-3 posts have assigned work. The FLS, QAC or Chemist, QDS, and LES support different parts of that work.",
       bullets: [
         "FLS: priorities, staffing, training status, and operational escalation.",
         "QAC / Chemist and QDS: methods, quality systems, SQC, data review, and investigation support.",
         "LES: equipment reliability, troubleshooting, service, and readiness support.",
       ],
-      note: "Use current site assignments and local escalation expectations; titles describe the working map, not every responsibility.",
+      note: "Use the current site assignment and local escalation path. These titles are only a quick map.",
       photo: slideVisuals.labSupport,
     }),
     createSlide({
-      eyebrow: "Section 5 / First-week orientation",
-      label: "Boundaries",
-      title: "Start with safety, authorization, and the local work process",
+      eyebrow: "Section 5 / Plant connection",
+      label: "Working together",
+      title: "Working with the lab",
       lead:
-        "Before independent work, complete the required site and lab orientation, understand emergency equipment and alarms, and verify the training authorization for each task.",
+        "Most employees will not perform lab work, but many plant roles depend on samples, requests, or lab results.",
       bullets: [
-        "Recognize hot surfaces, moving parts, pinch points, sharp tools, chemicals, gases, static, and pellet slip hazards.",
-        "Learn where current procedures, QAS, QP&G, DIAF, and post-specific references are controlled.",
-        "When safety, identity, method status, or data handling is unclear, pause and escalate.",
+        "Use the established channel when requesting tests, delivering samples, or asking about results.",
+        "Do not operate lab equipment or handle lab samples unless your role, training, and authorization allow it.",
+        "Contact the appropriate lab representative when a request, sample identity, priority, or result is unclear.",
       ],
-      note: "This orientation provides context only. Official training, current procedures, and supervisor direction govern the work.",
+      note: "This plant-wide orientation provides context only. It does not qualify anyone to perform lab work.",
       photo: slideVisuals.qualitySafety,
     }),
   ];
@@ -984,9 +970,9 @@ function getTechnicianFirstWeekSlides() {
     createSlide({
       eyebrow: "First week / Overview",
       label: "Start here",
-      title: "What the first week is for",
+      title: "Use the first week to get oriented",
       lead:
-        "Most of the first week is orientation, shadowing, and learning where to get help.",
+        "Your first week is mostly orientation, shadowing, and learning where to get help.",
       bullets: [
         "Meet the people covering your post.",
         "Learn the lab layout and emergency equipment.",
@@ -998,9 +984,9 @@ function getTechnicianFirstWeekSlides() {
     createSlide({
       eyebrow: "First week / People",
       label: "Who to ask",
-      title: "You do not need every answer",
+      title: "Know who to ask",
       lead:
-        "You do need to know where the answer should come from.",
+        "You will not know every answer. You should know where to get it.",
       bullets: [
         "Trainer: day-to-day method and task questions.",
         "FLS: priorities, authorization, or anything unclear.",
@@ -1011,9 +997,9 @@ function getTechnicianFirstWeekSlides() {
     createSlide({
       eyebrow: "First week / Lab walk",
       label: "Find the basics",
-      title: "Walk the lab before focusing on tests",
+      title: "Learn the lab before the tests",
       lead:
-        "Ask someone to show you the places and resources you will use.",
+        "Walk the space with your trainer and find the things you will use.",
       bullets: [
         "Exits, eyewashes, showers, alarms, spill supplies, and waste areas.",
         "Sample drop-off, post manuals, and equipment status boards.",
@@ -1024,9 +1010,9 @@ function getTechnicianFirstWeekSlides() {
     createSlide({
       eyebrow: "First week / Qualification",
       label: "How it starts",
-      title: "Watch. Practice. Qualify.",
+      title: "Training comes before independent work",
       lead:
-        "Independent work comes after the required training and review.",
+        "The normal order is to watch the task, practice it, and complete the required review.",
       bullets: [
         "Observe the task and its hazards.",
         "Practice with the assigned trainer.",
@@ -1038,9 +1024,9 @@ function getTechnicianFirstWeekSlides() {
     createSlide({
       eyebrow: "First week / Sample journey",
       label: "Follow one sample",
-      title: "See how the pieces connect",
+      title: "Follow one sample all the way through",
       lead:
-        "Ask a trainer to show you one sample from receipt to final record.",
+        "Ask your trainer to show you one sample from receipt to the final record.",
       bullets: [
         "Where did it come from, and how is it identified?",
         "What shows the equipment is ready?",
@@ -1051,9 +1037,9 @@ function getTechnicianFirstWeekSlides() {
     createSlide({
       eyebrow: "First week / Self-check",
       label: "Before week two",
-      title: "Know these three answers",
+      title: "Before week two",
       lead:
-        "You should be able to answer without guessing.",
+        "Make sure you can answer these without guessing.",
       bullets: [
         "What am I allowed to do right now?",
         "What should make me stop and ask?",
@@ -1152,7 +1138,7 @@ function renderSlide() {
                 <article class="test-menu-card stagger-card" style="--card-index: ${index}">
                   <img src="${getTestPhoto(index).src}" alt="" aria-hidden="true" />
                   <span>${String(index + 1).padStart(2, "0")}</span>
-                  <strong>${test.name}</strong>
+                  <strong>${details.menu || test.name}</strong>
                   <small>${activeGuide === "employee" ? test.area : details.short}</small>
                 </article>
               `;
@@ -1494,13 +1480,11 @@ function renderResources() {
         <div class="resource-section-title">
           <h3>${isEmployee ? "Official context and working references" : "Start with official ExxonMobil links"}</h3>
         </div>
-        <p class="resource-intro">
-          ${
-            isEmployee
-              ? "Use these sources for public site context, operational safety language, and polyethylene product background. Controlled procedures, current training, and supervisor direction govern actual lab work."
-              : "Use these links to understand the company, MBPP, safety language, and polyethylene products. For real lab work, your mentor, site procedures, and official training always come first."
-          }
-        </p>
+        ${
+          isEmployee
+            ? ""
+            : '<p class="resource-intro">Use these links to understand the company, MBPP, safety language, and polyethylene products. For real lab work, your mentor, site procedures, and official training always come first.</p>'
+        }
       </div>
       <div class="source-list">
         ${officialLinks
@@ -1509,7 +1493,6 @@ function renderResources() {
               <details class="source-link-card" ${index === 0 ? "open" : ""}>
                 <summary>
                   <strong>${item.label}</strong>
-                  <span>Click to view source notes</span>
                 </summary>
                 <div class="source-reveal">
                   <p>${item.text}</p>
@@ -1527,13 +1510,11 @@ function renderResources() {
         <div class="resource-section-title">
           <h3>${isEmployee ? "MBPP lab terms and working roles" : "Lab words you may hear"}</h3>
         </div>
-        <p class="resource-intro">
-          ${
-            isEmployee
-              ? "Use this reference to decode common MBPP lab terms, roles, systems, and review language. Current procedures and assigned training remain the source of authority."
-              : "Use this as a quick decoder while you shadow. Open a category when a word shows up, then ask your mentor how that word is used at MBPP."
-          }
-        </p>
+        ${
+          isEmployee
+            ? ""
+            : '<p class="resource-intro">Use this as a quick decoder while you shadow. Open a category when a word shows up, then ask your mentor how that word is used at MBPP.</p>'
+        }
       </div>
       <div class="term-groups">
         ${labTermGroups
@@ -1565,13 +1546,11 @@ function renderResources() {
     <section class="resource-card sample-journey-row">
       <div class="sample-journey-head">
         <h3>From pellet to defensible data</h3>
-        <p>
-          ${
-            isEmployee
-              ? "Follow one sample through identity, controlled testing, review, and record retention. The output is a result that can support plant decisions and withstand later review."
-              : "Follow one sample from the plant to the lab record. The goal is not just a number. The goal is a result someone can trust later."
-          }
-        </p>
+        ${
+          isEmployee
+            ? ""
+            : "<p>Follow one sample from the plant to the lab record. The goal is not just a number. The goal is a result someone can trust later.</p>"
+        }
       </div>
       <div class="sample-flow-map" aria-label="Animated sample-to-data lifecycle">
         <span class="sample-pellet" aria-hidden="true"></span>
@@ -1790,9 +1769,7 @@ function applyGuideContext(guideId) {
   guideBrandLabel.textContent = config.brand;
   homeTitle.textContent = config.homeTitle;
   startGuideTitle.textContent = config.startTitle;
-  startGuideCopy.textContent = config.startCopy;
   secondaryGuideTitle.textContent = config.secondaryTitle;
-  resourcesGuideCopy.textContent = config.resourcesCopy;
   resourcesEyebrow.textContent = config.resourcesEyebrow;
   resourcesTitle.textContent = config.resourcesTitle;
   topbarBrand.setAttribute("aria-label", "Return to selected guide home");
