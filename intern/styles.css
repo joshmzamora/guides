@@ -6868,7 +6868,7 @@ body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel 
 
 body:is([data-active-view="home"], [data-active-view="audience"]) .choice-icon {
   width: clamp(60px, 5.5vw, 78px);
-  margin-bottom: clamp(18px, 10dvh, 110px);
+  margin-bottom: clamp(14px, 3dvh, 36px);
 }
 
 body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel strong {
