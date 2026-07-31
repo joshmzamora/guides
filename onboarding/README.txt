@@ -3,7 +3,7 @@ MBPP Lab Intern Guide
 TO OPEN
 
 1. Make sure the downloaded ZIP file has been fully extracted.
-2. Open the intern folder.
+2. Open the onboarding folder.
 3. Double-click index.html.
 4. Use the controls on the page to move through the guide and its slides.
 

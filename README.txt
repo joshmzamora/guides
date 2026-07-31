@@ -3,8 +3,8 @@ MBPP Guides
 This repository contains three independent browser-based guides:
 
 - safety
-- intern
-- tech
+- onboarding
+- dashboard
 
 No coding, installation, or server setup is required.
 Each folder also has its own README.txt with more information.
@@ -35,13 +35,13 @@ on the page to move through the presentation. Keep the complete safety folder
 together so its supporting files remain available.
 
 
-INTERN
+ONBOARDING
 
 Folder:
-intern
+onboarding
 
 Start file:
-intern/index.html
+onboarding/index.html
 
 How it works:
 This is the MBPP lab onboarding guide. Open index.html and use the page
@@ -52,13 +52,13 @@ The local version may hide the intro video when opened directly from a
 computer. The guide content, slides, and resources should still work.
 
 
-TECH
+DASHBOARD
 
 Folder:
-tech
+dashboard
 
 Start file:
-tech/mbpp_technician_dashboard.html
+dashboard/mbpp_technician_dashboard.html
 
 How it works:
 This is the technician dashboard. It is contained in one HTML file, so open

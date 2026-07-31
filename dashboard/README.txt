@@ -3,7 +3,7 @@ MBPP Technician Dashboard
 TO OPEN
 
 1. Make sure the downloaded ZIP file has been fully extracted.
-2. Open the tech folder.
+2. Open the dashboard folder.
 3. Double-click mbpp_technician_dashboard.html.
 
 ABOUT THIS DASHBOARD
