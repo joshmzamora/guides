@@ -1506,26 +1506,39 @@ body[data-active-view="resources"] .app-topbar {
   background: var(--black);
 }
 
-.choice-number,
+.choice-icon,
 .choice-kicker,
 .choice-panel strong {
   position: relative;
   z-index: 1;
 }
 
-.choice-number {
+.choice-icon {
   display: grid;
   place-items: center;
-  width: 54px;
+  width: 78px;
   aspect-ratio: 1;
   margin-bottom: clamp(70px, 15vh, 170px);
   color: var(--white);
   background: var(--red);
-  font-size: 0.9rem;
-  font-weight: 900;
 }
 
-.resources-panel .choice-number {
+.choice-icon svg {
+  width: 62%;
+  height: 62%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.choice-icon .choice-icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.resources-panel .choice-icon {
   color: var(--white);
   background: var(--black);
 }
@@ -3463,7 +3476,7 @@ body[data-guide="technician"] .resources-grid {
   z-index: 1;
 }
 
-.choice-number,
+.choice-icon,
 .choice-kicker,
 .choice-panel strong {
   z-index: 2;
@@ -6220,10 +6233,6 @@ body[data-guide="technician"] .simple-points li {
     border-bottom-color: var(--black);
   }
 
-  .choice-number {
-    font-size: 0.82rem;
-  }
-
   .choice-kicker {
     margin-bottom: 8px;
     font-size: 0.72rem;
@@ -6856,8 +6865,8 @@ body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel 
   padding: clamp(18px, 4vw, 58px);
 }
 
-body:is([data-active-view="home"], [data-active-view="audience"]) .choice-number {
-  width: clamp(38px, 4vw, 54px);
+body:is([data-active-view="home"], [data-active-view="audience"]) .choice-icon {
+  width: clamp(60px, 5.5vw, 78px);
   margin-bottom: clamp(18px, 10dvh, 110px);
 }
 
@@ -6875,10 +6884,9 @@ body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel 
     padding: clamp(14px, 4vw, 22px);
   }
 
-  body:is([data-active-view="home"], [data-active-view="audience"]) .choice-number {
-    width: 34px;
+  body:is([data-active-view="home"], [data-active-view="audience"]) .choice-icon {
+    width: 52px;
     margin-bottom: clamp(8px, 3dvh, 20px);
-    font-size: 0.72rem;
   }
 
   body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel strong {
@@ -6894,10 +6902,9 @@ body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel 
     padding-block: 14px;
   }
 
-  body:is([data-active-view="home"], [data-active-view="audience"]) .choice-number {
-    width: 32px;
+  body:is([data-active-view="home"], [data-active-view="audience"]) .choice-icon {
+    width: 46px;
     margin-bottom: 8px;
-    font-size: 0.68rem;
   }
 
   body:is([data-active-view="home"], [data-active-view="audience"]) .choice-panel strong {
