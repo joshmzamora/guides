@@ -1272,7 +1272,7 @@ function renderTechnicianPlaybook() {
         ${technicianPlaybookSituations
           .map(
             (situation, index) => `
-              <details class="playbook-case" ${index === 0 ? "open" : ""}>
+              <details class="playbook-case">
                 <summary>
                   <span class="playbook-case-number">${String(index + 1).padStart(2, "0")}</span>
                   <span class="playbook-case-copy">
@@ -1520,7 +1520,7 @@ function renderResources() {
         ${labTermGroups
           .map(
             (group, index) => `
-              <details class="term-group" ${index === 0 ? "open" : ""}>
+              <details class="term-group">
                 <summary>
                   <strong>${group.title}</strong>
                   <span>${group.terms.length} terms</span>
