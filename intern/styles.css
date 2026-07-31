@@ -2519,8 +2519,8 @@ body[data-guide="technician"] .resources-grid {
   display: grid;
   align-content: start;
   gap: 0;
-  min-height: 92px;
-  padding: 16px 16px 16px 18px;
+  min-height: 64px;
+  padding: 11px 14px 11px 18px;
   color: var(--black);
   background: var(--white);
   text-decoration: none;
@@ -2554,21 +2554,23 @@ body[data-guide="technician"] .resources-grid {
 }
 
 .source-link-card summary {
+  position: relative;
   display: grid;
-  gap: 7px;
-  min-height: 58px;
-  padding-left: 8px;
+  align-content: center;
+  min-height: 40px;
+  padding: 0 40px 0 8px;
 }
 
 .source-link-card summary::after {
   content: "+";
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 50%;
+  right: 0;
   display: grid;
   place-items: center;
   width: 28px;
   height: 28px;
+  transform: translateY(-50%);
   color: var(--red);
   border: 1px solid rgba(237, 27, 45, 0.55);
   font-weight: 900;
@@ -2594,14 +2596,6 @@ body[data-guide="technician"] .resources-grid {
   color: var(--black);
   font-size: clamp(0.98rem, 1.2vw, 1.14rem);
   line-height: 1.1;
-}
-
-.source-link-card summary span {
-  padding-left: 0;
-  color: var(--red);
-  font-size: 0.72rem;
-  font-weight: 900;
-  text-transform: uppercase;
 }
 
 .source-reveal {
@@ -2884,9 +2878,9 @@ body[data-guide="technician"] .resources-grid {
   top: 43px;
   left: 27px;
   z-index: 3;
-  width: clamp(48px, 5.2vw, 76px);
-  aspect-ratio: 760 / 496;
-  background: url("assets/pellet-cutout-icon.png") center / contain no-repeat;
+  width: clamp(72px, 7vw, 100px);
+  aspect-ratio: 3 / 2;
+  background: url("assets/pellet-cutout-icon-v2.png") center / 140% auto no-repeat;
   border: 0;
   border-radius: 0;
   animation: samplePelletRun 10s linear 720ms infinite both;
@@ -3195,13 +3189,14 @@ body[data-guide="technician"] .resources-grid {
 
   .sample-pellet {
     top: 22px;
-    left: 19px;
+    left: 31px;
+    width: 64px;
     animation-name: samplePelletRunMobile;
   }
 
   .sample-flow-step {
     min-height: 0;
-    padding: 18px 18px 18px 62px;
+    padding: 18px 18px 18px 78px;
   }
 
   .sample-flow-step::before {
@@ -6832,6 +6827,7 @@ body[data-guide="technician"] .simple-points li {
   .sample-pellet {
     top: 33px;
     left: 31px;
+    width: 64px;
   }
 }
 

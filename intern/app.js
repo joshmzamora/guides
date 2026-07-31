@@ -1490,7 +1490,7 @@ function renderResources() {
         ${officialLinks
           .map(
             (item, index) => `
-              <details class="source-link-card" ${index === 0 ? "open" : ""}>
+              <details class="source-link-card">
                 <summary>
                   <strong>${item.label}</strong>
                 </summary>
