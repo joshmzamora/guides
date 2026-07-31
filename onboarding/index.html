@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="favicon.ico" sizes="any" />
-    <script>
-      document.documentElement.dataset.localFile = String(window.location.protocol === "file:");
-    </script>
     <style>
       .technician-playbook .playbook-intro,
       .playbook-case-copy small,
@@ -72,14 +69,6 @@
       .playbook-case[open] .playbook-response {
         opacity: 1;
         transform: translateY(0);
-      }
-
-      html[data-local-file="true"] #introVideoModule {
-        display: none !important;
-      }
-
-      html[data-local-file="true"] .welcome-panel.movie-panel {
-        grid-template-columns: minmax(0, 1fr);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -680,9 +669,6 @@
     </script>
     <script>
       (() => {
-        const isLocalFile = window.location.protocol === "file:";
-        document.documentElement.dataset.localFile = String(isLocalFile);
-
         function makeVideoOptional() {
           const introVideo = document.querySelector("#introVideo");
           const introVideoModule = document.querySelector("#introVideoModule");
@@ -699,62 +685,8 @@
           }
         }
 
-        function disableLocalVideoLoading() {
-          const introVideo = document.querySelector("#introVideo");
-          if (!introVideo) return;
-
-          let sourceChanged = false;
-          introVideo.pause();
-          if (introVideo.preload !== "none") {
-            introVideo.preload = "none";
-            sourceChanged = true;
-          }
-          if (introVideo.hasAttribute("src")) {
-            introVideo.removeAttribute("src");
-            sourceChanged = true;
-          }
-          introVideo.querySelectorAll("track[src]").forEach((track) => {
-            track.removeAttribute("src");
-            sourceChanged = true;
-          });
-          if (!sourceChanged) return;
-
-          try {
-            introVideo.load();
-          } catch {
-            // Local file previews should not fail if the optional video cannot load.
-          }
-        }
-
         const introVideo = document.querySelector("#introVideo");
-        introVideo?.addEventListener("error", makeVideoOptional, true);
-
-        if (!isLocalFile) return;
-
-        function keepLocalPreviewStable() {
-          makeVideoOptional();
-          disableLocalVideoLoading();
-        }
-
-        window.addEventListener("load", keepLocalPreviewStable);
-        document.addEventListener("DOMContentLoaded", () => {
-          keepLocalPreviewStable();
-          const introVideoModule = document.querySelector("#introVideoModule");
-          if (introVideoModule) {
-            new MutationObserver(() => {
-              if (
-                !introVideoModule.hidden ||
-                introVideoModule.style.display !== "none"
-              ) {
-                keepLocalPreviewStable();
-              }
-            }).observe(introVideoModule, {
-              attributes: true,
-              attributeFilter: ["hidden", "style", "class"],
-            });
-          }
-        });
-        keepLocalPreviewStable();
+        introVideo?.addEventListener("error", makeVideoOptional);
       })();
     </script>
   </body>

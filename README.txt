@@ -48,8 +48,9 @@ This is the MBPP lab onboarding guide. Open index.html and use the page
 controls to move through its sections and slides. The page uses app.js,
 styles.css, and the assets folder, so keep all intern files together.
 
-The local version may hide the intro video when opened directly from a
-computer. The guide content, slides, and resources should still work.
+The onboarding intro includes a bundled video and captions. Keep the complete
+assets folder with the guide so the video can load when index.html is opened
+directly from the computer.
 
 
 DASHBOARD

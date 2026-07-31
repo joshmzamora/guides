@@ -13,9 +13,10 @@ This guide introduces the MBPP lab, common tests, good data practices, and
 helpful context for an intern's first few weeks. Keep index.html, app.js,
 styles.css, and the assets folder together.
 
-The local version may hide the intro video when opened directly from a
-computer. The rest of the guide should still work. Chrome or Edge is
-recommended, and no installation or server is needed.
+The intro includes a bundled video and captions. Keep the complete assets
+folder with the guide so the video can load when index.html is opened directly
+from the computer. Chrome or Edge is recommended, and no installation or
+server is needed.
 
 NOTE FROM JOSH
 
