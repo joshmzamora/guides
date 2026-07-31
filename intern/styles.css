@@ -5453,7 +5453,7 @@ body[data-guide="technician"] .simple-points li {
 }
 
 .welcome-intro.intro-active .intro-brand-lockup {
-  animation: movieLogoIn 620ms ease 3200ms both;
+  animation: movieLogoIn 320ms ease 980ms both;
 }
 
 .movie-panel .welcome-copy {
@@ -5549,7 +5549,7 @@ body[data-guide="technician"] .simple-points li {
 }
 
 .welcome-intro.intro-active .intro-logo-splash {
-  animation: introMovieLogoSplash 5600ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+  animation: introMovieLogoSplash 1400ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
 }
 
 @keyframes introMovieLogoSplash {
@@ -5558,12 +5558,12 @@ body[data-guide="technician"] .simple-points li {
     transform: scale(0.94);
     filter: blur(8px);
   }
-  10% {
+  14% {
     opacity: 1;
     transform: scale(1);
     filter: blur(0);
   }
-  76% {
+  62% {
     opacity: 1;
     transform: scale(1.015);
     filter: blur(0);
@@ -6699,15 +6699,15 @@ body[data-guide="technician"] .simple-points li {
 /* Current intro sequence: manual continue flow, faster logo, separate context/video modules. */
 
 .welcome-intro.intro-active .intro-logo-splash {
-  animation: introMovieLogoSplash 2400ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+  animation: introMovieLogoSplash 1400ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
 }
 
 .welcome-intro.intro-active .welcome-panel {
-  animation: cinematicPanelReveal 900ms cubic-bezier(0.16, 1, 0.3, 1) 2500ms both;
+  animation: cinematicPanelReveal 480ms cubic-bezier(0.16, 1, 0.3, 1) 800ms both;
 }
 
 .welcome-intro.intro-active .intro-brand-lockup {
-  animation: movieLogoIn 520ms ease 2750ms both;
+  animation: movieLogoIn 320ms ease 980ms both;
 }
 
 .welcome-intro.intro-context-scene .movie-panel {
