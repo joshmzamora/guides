@@ -147,12 +147,12 @@ const testWalkthroughs = [
 
 const guideConfigs = {
   intern: {
-    brand: "MBPP Lab Intern Guide",
-    homeTitle: "Mont Belvieu Plastics Plant Lab Intern Guide",
-    startTitle: "Start Intern Guide",
+    brand: "MBPP Intern Onboarding",
+    homeTitle: "Mont Belvieu Plastics Plant Intern Onboarding",
+    startTitle: "Start Intern Onboarding",
     secondaryTitle: "Resources & Guides",
-    resourcesEyebrow: "Intern Guide / Resources",
-    resourcesTitle: "Sources and lab language.",
+    resourcesEyebrow: "Intern Onboarding / Resources",
+    resourcesTitle: "Resources",
   },
   employee: {
     brand: "MBPP Lab Orientation",
@@ -160,7 +160,7 @@ const guideConfigs = {
     startTitle: "Start Lab Orientation",
     secondaryTitle: "Resources & Guides",
     resourcesEyebrow: "MBPP Lab Orientation / Resources",
-    resourcesTitle: "Sources and lab reference.",
+    resourcesTitle: "Resources",
   },
   technician: {
     brand: "MBPP Technician Onboarding",
@@ -197,8 +197,6 @@ const introOverlay = document.querySelector("#welcomeIntro");
 const introTitle = document.querySelector("#welcomeTitle");
 const introVideo = document.querySelector("#introVideo");
 const introVideoModule = document.querySelector("#introVideoModule");
-const disclaimerOverlay = document.querySelector("#guideDisclaimer");
-const disclaimerButton = document.querySelector("[data-disclaimer-acknowledge]");
 const mobileExperienceNote = document.querySelector("#mobileExperienceNote");
 const viewportMeta = document.querySelector('meta[name="viewport"]');
 const INTRO_SEEN_KEY = "mbppInternGuideIntroSeen";
@@ -211,7 +209,6 @@ const REVEAL_CLASS_MS = 1200;
 const DETAILS_ANIMATION_MS = 300;
 
 let activeGuide = null;
-let pendingGuide = null;
 let activeView = "audience";
 let activeSlide = 0;
 let activeRevealStep = 0;
@@ -239,11 +236,6 @@ const introScenes = [
     theme: "video",
     title: ["Official", "ExxonMobil video."],
     video: true,
-  },
-  {
-    theme: "ready",
-    title: ["Start the", "MBPP lab", "walkthrough."],
-    video: false,
   },
 ];
 
@@ -1475,12 +1467,18 @@ function renderResources() {
 
   resourcesContent.innerHTML = `
     <section class="resource-card resource-row source-row" id="approvedSources">
-      <img class="resource-photo" src="${photos.plant.src}" alt="${photos.plant.alt}" />
-      <div class="resource-section-intro">
-        <div class="resource-section-title">
-          <h3>${isEmployee ? "Official context and working references" : "Start with official ExxonMobil links"}</h3>
-        </div>
-      </div>
+      <header class="resource-section-header">
+        <span class="resource-section-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <path d="M11 7h20v12"></path>
+            <path d="M11 7v34h26V25"></path>
+            <path d="m23 25 16-16"></path>
+            <path d="M28 9h11v11"></path>
+          </svg>
+        </span>
+        <h3>Official links</h3>
+        <span class="resource-section-count">${officialLinks.length} sources</span>
+      </header>
       <div class="source-list">
         ${officialLinks
           .map(
@@ -1500,12 +1498,16 @@ function renderResources() {
       </div>
     </section>
     <section class="resource-card resource-row terms-row" id="labLanguage">
-      <img class="resource-photo" src="${photos.analytical.src}" alt="${photos.analytical.alt}" />
-      <div class="resource-section-intro">
-        <div class="resource-section-title">
-          <h3>${isEmployee ? "MBPP lab terms and working roles" : "Lab words you may hear"}</h3>
-        </div>
-      </div>
+      <header class="resource-section-header">
+        <span class="resource-section-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <path d="M4 9h12c5 0 8 3 8 8v24c0-5-3-8-8-8H4Z"></path>
+            <path d="M44 9H32c-5 0-8 3-8 8v24c0-5 3-8 8-8h12Z"></path>
+          </svg>
+        </span>
+        <h3>Lab terms</h3>
+        <span class="resource-section-count">${labTermGroups.length} categories</span>
+      </header>
       <div class="term-groups">
         ${labTermGroups
           .map(
@@ -1586,24 +1588,6 @@ function dismissMobileNotice() {
     localStorage.setItem(MOBILE_NOTICE_KEY, "true");
   } catch {
     // The notice can still be dismissed visually for this page load.
-  }
-}
-
-function dismissDisclaimer() {
-  disclaimerOverlay?.classList.remove("active");
-  disclaimerOverlay?.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("disclaimer-is-open");
-
-  const guideId = pendingGuide;
-  pendingGuide = null;
-  if (!guideId || !applyGuideContext(guideId)) {
-    document.querySelector("[data-guide-select]")?.focus();
-    return;
-  }
-
-  showView("home");
-  if (guideId === "intern") {
-    setIntroOpen(true, { remember: false });
   }
 }
 
@@ -1767,12 +1751,11 @@ function applyGuideContext(guideId) {
 }
 
 function selectGuide(guideId) {
-  if (!guideConfigs[guideId]) return;
-  pendingGuide = guideId;
-  disclaimerOverlay?.classList.add("active");
-  disclaimerOverlay?.setAttribute("aria-hidden", "false");
-  document.body.classList.add("disclaimer-is-open");
-  window.requestAnimationFrame(() => disclaimerButton?.focus());
+  if (!applyGuideContext(guideId)) return;
+  showView("home");
+  if (guideId === "intern") {
+    setIntroOpen(true, { remember: false });
+  }
 }
 
 function showGuideSelector() {
@@ -1934,14 +1917,6 @@ document.addEventListener(
 document.addEventListener("click", (event) => {
   unlockIntroSfx();
 
-  const disclaimerAcknowledge = event.target.closest("[data-disclaimer-acknowledge]");
-  if (disclaimerAcknowledge) {
-    event.preventDefault();
-    playSfx("open");
-    dismissDisclaimer();
-    return;
-  }
-
   const guideSelection = event.target.closest("[data-guide-select]");
   if (guideSelection) {
     event.preventDefault();
@@ -2039,14 +2014,6 @@ document.addEventListener(
 );
 
 document.addEventListener("keydown", (event) => {
-  if (disclaimerOverlay?.classList.contains("active")) {
-    if (event.key === "Tab" || event.key === "Escape") {
-      event.preventDefault();
-      disclaimerButton?.focus();
-    }
-    return;
-  }
-
   if (introOverlay?.classList.contains("active")) {
     if (event.key === "Escape") {
       event.preventDefault();

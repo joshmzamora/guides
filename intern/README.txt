@@ -1,29 +1,24 @@
-MBPP Lab Onboarding
+MBPP Lab Intern Guide
 
-This is a website.
+TO OPEN
 
-To open it on your computer:
+1. Make sure the downloaded ZIP file has been fully extracted.
+2. Open the intern folder.
+3. Double-click index.html.
+4. Use the controls on the page to move through the guide and its slides.
 
-1. Download the project from GitHub.
-2. Unzip the downloaded folder.
-3. Open the unzipped folder.
-4. Double-click index.html.
+ABOUT THIS GUIDE
 
-Important:
+This guide introduces the MBPP lab, common tests, good data practices, and
+helpful context for an intern's first few weeks. Keep index.html, app.js,
+styles.css, and the assets folder together.
 
-- Do not open index.html while it is still inside the ZIP file.
-- Keep index.html, app.js, styles.css, favicon.svg, favicon.ico, and the assets folder together.
-- Do not move files out of the folder or rename the assets folder.
-- The website is meant to run directly in a browser like Chrome, Edge, Safari, or Firefox.
-- No coding, installing, or server setup is needed for the local version.
+The local version may hide the intro video when opened directly from a
+computer. The rest of the guide should still work. Chrome or Edge is
+recommended, and no installation or server is needed.
 
-If something looks broken:
+NOTE FROM JOSH
 
-- Make sure the folder was fully unzipped first.
-- Make sure the assets folder is still in the same folder as index.html.
-- Try opening index.html in Chrome or Edge.
-- Refresh the page.
-
-Note:
-
-The local version may hide the intro video so the website can work without a server. The guide content, slides, and resources should still work.
+Hi, this is Josh! I made this from the things I learned during my internship.
+I hope it gives future interns a helpful starting point and makes the first few
+weeks a little easier.

@@ -105,25 +105,6 @@
         </div>
       </header>
 
-      <section
-        class="guide-disclaimer"
-        id="guideDisclaimer"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="guideDisclaimerTitle"
-        aria-describedby="guideDisclaimerCopy"
-        aria-hidden="true"
-      >
-        <div class="guide-disclaimer-panel">
-          <span class="guide-disclaimer-kicker">Before you begin</span>
-          <h2 id="guideDisclaimerTitle">Training comes first.</h2>
-          <p id="guideDisclaimerCopy">
-            Unofficial learning aid. Official ExxonMobil training, site procedures, and supervisor direction always override this guide.
-          </p>
-          <button type="button" data-disclaimer-acknowledge>I understand</button>
-        </div>
-      </section>
-
       <aside class="mobile-experience-note" id="mobileExperienceNote" aria-live="polite">
         <div>
           <strong>Best on a computer</strong>
@@ -133,49 +114,73 @@
       </aside>
 
       <main>
-        <section class="choice-screen audience-screen active" id="audienceView" aria-labelledby="audienceTitle">
+        <section class="choice-screen audience-screen active" id="audienceView" aria-label="MBPP Lab Onboarding guides">
           <div class="audience-backdrop" aria-hidden="true">
             <img src="assets/slide-08-lab-overview.png" alt="" />
             <span class="audience-grid-lines"></span>
           </div>
 
           <div class="audience-shell">
-            <div class="audience-intro">
-              <p>Mont Belvieu Plastics Plant</p>
-              <h1 id="audienceTitle">Choose your<br />starting point.</h1>
-              <span>Select the guide that matches your role.</span>
-            </div>
-
-            <div class="audience-routes" aria-label="Available lab guides">
-              <button class="audience-route employee-route" type="button" data-guide-select="employee">
-                <span class="audience-route-index" aria-hidden="true">01</span>
+            <div class="audience-paths">
+              <button class="audience-route audience-primary-route employee-route" type="button" data-guide-select="employee">
                 <span class="audience-route-copy">
                   <small>All MBPP employees</small>
-                  <strong>MBPP Lab Orientation</strong>
-                  <span>A plant-wide overview of what the lab does and how it supports MBPP.</span>
+                  <strong>Lab Orientation</strong>
+                  <span class="audience-route-description">A plant-wide overview of the lab and how its work supports MBPP.</span>
                 </span>
-                <span class="audience-route-arrow" aria-hidden="true">&rarr;</span>
+                <span class="audience-route-action">
+                  Open
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
+                <span class="audience-route-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" focusable="false">
+                    <path d="M6 40V14h23v26"></path>
+                    <path d="M11 14V8h13v6"></path>
+                    <path d="M6 40h37"></path>
+                    <path d="M12 21h4m4 0h4m-12 7h4m4 0h4"></path>
+                    <path d="M34 14h4m-3 0v11l-5.7 10.4A3 3 0 0 0 32 40h8a3 3 0 0 0 2.7-4.6L37 25V14"></path>
+                    <path d="M31.5 32h9"></path>
+                  </svg>
+                </span>
               </button>
 
-              <button class="audience-route technician-route" type="button" data-guide-select="technician">
-                <span class="audience-route-index" aria-hidden="true">02</span>
-                <span class="audience-route-copy">
-                  <small>New lab technicians</small>
-                  <strong>Technician Onboarding</strong>
-                  <span>A role-specific onboarding path for technicians entering MBPP laboratory work.</span>
-                </span>
-                <span class="audience-route-arrow" aria-hidden="true">&rarr;</span>
-              </button>
+              <div class="audience-role-routes" aria-label="Role-specific lab guides">
+                <button class="audience-route audience-role-route technician-route" type="button" data-guide-select="technician">
+                  <span class="audience-route-copy">
+                    <small>New lab technicians</small>
+                    <strong>Technician Onboarding</strong>
+                    <span class="audience-route-description">The lab basics, work areas, and first-week expectations for new technicians.</span>
+                  </span>
+                  <span class="audience-route-action">
+                    Open
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+                  <span class="audience-route-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" focusable="false">
+                      <path d="M29 9a9 9 0 0 0-8.4 12.2L9.2 32.6a4.4 4.4 0 1 0 6.2 6.2l11.4-11.4A9 9 0 0 0 39 19l-5.8 5.8-8-8Z"></path>
+                      <circle cx="12.3" cy="35.7" r="1.7"></circle>
+                    </svg>
+                  </span>
+                </button>
 
-              <button class="audience-route intern-route" type="button" data-guide-select="intern">
-                <span class="audience-route-index" aria-hidden="true">03</span>
-                <span class="audience-route-copy">
-                  <small>High school interns</small>
-                  <strong>Intern Guide</strong>
-                  <span>A guided introduction to MBPP, laboratory work, common tests, and safe shadowing.</span>
-                </span>
-                <span class="audience-route-arrow" aria-hidden="true">&rarr;</span>
-              </button>
+                <button class="audience-route audience-role-route intern-route" type="button" data-guide-select="intern">
+                  <span class="audience-route-copy">
+                    <small>High school interns</small>
+                    <strong>Intern Onboarding</strong>
+                    <span class="audience-route-description">An introduction to MBPP, common lab work, and safe shadowing.</span>
+                  </span>
+                  <span class="audience-route-action">
+                    Open
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+                  <span class="audience-route-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" focusable="false">
+                      <path d="M5 10h12c4.6 0 7 2.8 7 7v24c0-4.6-3.4-7-8-7H5Z"></path>
+                      <path d="M43 10H31c-4.6 0-7 2.8-7 7v24c0-4.6 3.4-7 8-7h11Z"></path>
+                    </svg>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -239,11 +244,11 @@
           <span class="welcome-grid"></span>
           <span class="welcome-scan"></span>
         </div>
-        <div class="intro-logo-splash" aria-hidden="true">
-          <img src="assets/exxonmobil-logo.png" alt="" />
-          <span>Mont Belvieu Plastics Plant Lab</span>
-        </div>
         <div class="welcome-panel movie-panel" role="dialog" aria-modal="true">
+          <div class="intro-logo-splash" aria-hidden="true">
+            <img src="assets/exxonmobil-logo.png" alt="" />
+            <span>Mont Belvieu Plastics Plant Lab</span>
+          </div>
           <div class="intro-brand-lockup" aria-hidden="true">
             <img src="assets/exxonmobil-logo.png" alt="" />
           </div>
@@ -499,7 +504,6 @@
             scenes: [
               { theme: "welcome", title: ["Welcome,", "MBPP employees."] },
               { theme: "context", title: ["See how", "the lab supports", "plant decisions."] },
-              { theme: "ready", title: ["Start the", "lab orientation."] },
             ],
           },
           technician: {
@@ -508,7 +512,6 @@
               { theme: "welcome", title: ["Welcome,", "new lab technician."] },
               { theme: "context", title: ["Build your", "first-week", "mental map."] },
               { theme: "context", title: ["Learn what", "to stop, check,", "contact, and record."] },
-              { theme: "ready", title: ["Start the", "technician", "onboarding path."] },
             ],
           },
         };

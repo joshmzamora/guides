@@ -72,9 +72,6 @@
         // Technician / Job Aids / Job Aids Folder
         jobAidsFolder: "",
 
-        // Technician / Job Aids / PHHG 6 Reference Plate / confirm name
-        phhg6Plate: "",
-
         // Technician / Job Aids / Melt Index Job Aid
         miJobAid: "",
 
@@ -84,13 +81,13 @@
         // Technician / Job Aids / Headspace Job Aid
         headspaceJobAid: "",
 
-        // Common Test Procedures / A-1 / Film / TDA / PBI / confirm exact procedure name
+        // Common Test Procedures / A-1 / Film / TDA / PVI / PVI
         pbi: "",
 
-        // Common Test Procedures / A-1 / Film / TDA / TDA HD
+        // Common Test Procedures / A-1 / Film / TDA / PVI / TDA
         tdaHd: "",
 
-        // Common Test Procedures / A-1 / Film / TDA / TDA LD
+        // Common Test Procedures / A-1 / Film / TDA / PVI / Film
         tdaLd: "",
 
         // Common Test Procedures / A-2 / Physical Properties / Melt Index
@@ -99,13 +96,13 @@
         // Common Test Procedures / A-2 / Physical Properties / Density
         density: "",
 
-        // Common Test Procedures / A-2 / Physical Properties / Rheometer / confirm exact name
+        // Common Test Procedures / A-2 / Physical Properties / Tan Delta
         rheometer: "",
 
         // Common Test Procedures / A-3 / Analytical / Headspace
         headspace: "",
 
-        // Common Test Procedures / A-3 / Analytical / XRS/XRF / confirm exact name
+        // Common Test Procedures / A-3 / Analytical / XRF
         xrsXrf: "",
 
         // Technician / Something Went Wrong / Instrument out of control - notify Specialist/FLS
@@ -124,14 +121,11 @@
         // Technician / Something Went Wrong / Data entry issue - use approved correction/data handling process
         issueDataEntry: "",
 
-        // Technician / Safety / Site Safe / Site Safe / Site Safety Bookmark
-        siteSafe: "",
+        // Technician / Safety / Safety Standards
+        safetyStandards: "",
 
-        // Technician / Safety / Site Safe / Safety Procedures
-        safetyProcedures: "",
-
-        // Technician / Safety / Site Safe / Emergency / Security Procedures
-        emergencyProcedures: "",
+        // Technician / Safety / SS-128 Injury and Illness Reporting
+        ss128InjuryIllnessReporting: "",
 
         // Technician / Procedures in OIMS / QC Lab - Test Methods / Site Procedures
         oimsProcedures: "",
@@ -159,24 +153,12 @@
         // Technician / Training / Qualification / QP&G Overview / Training
         qpngTraining: "",
 
-        // Technician / Training / Qualification / PQE / Post Qualification Guide
-        pqeGuide: "",
-
-        // Technician / Quality / Audit Resources / QP&G PDF / Official Copy
+        // Technician / Quality Resources / QP&G Flowchart
         // Also used in: Chemist / Chemist Resources / QP&G / Audit Resources
         qpngPdf: "",
 
-        // Technician / Quality / Audit Resources / QP&G Presentation
-        qpngPresentation: "",
-
-        // Technician / Quality / Audit Resources / DIAF Resource
+        // Technician / Quality Resources / DIAF Resource
         diaf: "",
-
-        // Technician / Quality / Audit Resources / Equipment Quality Report Resource
-        eqrResource: "",
-
-        // Technician / Quality / Audit Resources / Data Handling Calculator
-        dataHandlingCalculator: "",
 
         // Technician / Methods / References / AMS Procedures
         amsProcedures: "",
@@ -207,6 +189,12 @@
 
         // Technician / Lab Operations / Employee Tools / RTA Loss of Communications
         rtaLossOfCommunications: "",
+
+        // Technician / Lab Operations / Employee Tools / Lab Library
+        labLibrary: "",
+
+        // Technician / Lab Operations / Employee Tools / Record Retention
+        recordRetention: "",
 
         // FLS / Lab FLS Resources / Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining
         flsCyberSecurityAwareness: "",
@@ -284,11 +272,13 @@
       */
       const RESOURCE_SECTIONS = [
         {
-          title: "Safety / Site Safe",
+          title: "Safety",
           links: [
-            { label: "Site Safe / Site Safety Bookmark", linkKey: "siteSafe" },
-            { label: "Safety Procedures", linkKey: "safetyProcedures" },
-            { label: "Emergency / Security Procedures", linkKey: "emergencyProcedures" },
+            { label: "Safety Standards", linkKey: "safetyStandards" },
+            {
+              label: "SS-128 Injury and Illness Reporting",
+              linkKey: "ss128InjuryIllnessReporting",
+            },
           ],
         },
         {
@@ -309,7 +299,6 @@
             { label: "DIAF Training", linkKey: "diafTraining" },
             { label: "QP&G Overview / Training", linkKey: "qpngTraining" },
             { label: "Equipment Quality Report (EQR)", linkKey: "eqr" },
-            { label: "PQE / Post Qualification Guide", linkKey: "pqeGuide" },
           ],
         },
         {
@@ -317,21 +306,20 @@
           links: [
             { label: "Munuros", linkKey: "munuros" },
             { label: "Payroll", linkKey: "payroll" },
-            { label: "PPE Approval Forms", linkKey: "ppeApprovalForms" },
             {
               label: "RTA Loss of Communications",
               linkKey: "rtaLossOfCommunications",
             },
+            { label: "PPE Approval Forms", linkKey: "ppeApprovalForms" },
+            { label: "Lab Library", linkKey: "labLibrary" },
+            { label: "Record Retention", linkKey: "recordRetention" },
           ],
         },
         {
-          title: "Quality / Audit Resources",
+          title: "Quality Resources",
           links: [
-            { label: "QP&G PDF / Official Copy", linkKey: "qpngPdf" },
-            { label: "QP&G Presentation", linkKey: "qpngPresentation" },
+            { label: "QP&G Flowchart", linkKey: "qpngPdf" },
             { label: "DIAF Resource", linkKey: "diaf" },
-            { label: "Equipment Quality Report Resource", linkKey: "eqrResource" },
-            { label: "Data Handling Calculator", linkKey: "dataHandlingCalculator" },
             { label: "Calculation Tools", linkKey: "calculationTools" },
           ],
         },
@@ -339,32 +327,9 @@
           title: "Job Aids",
           links: [
             { label: "Job Aids Folder", linkKey: "jobAidsFolder" },
-            { label: "PHHG 6 Reference Plate / confirm name", linkKey: "phhg6Plate" },
             { label: "Melt Index Job Aid", linkKey: "miJobAid" },
             { label: "Density Job Aid", linkKey: "densityJobAid" },
             { label: "Headspace Job Aid", linkKey: "headspaceJobAid" },
-          ],
-        },
-        {
-          title: "Methods / References",
-          links: [
-            { label: "AMS Procedures", linkKey: "amsProcedures" },
-            { label: "AMS Method 1 / confirm exact title", linkKey: "amsMethod1" },
-            { label: "AMS Method 2 / confirm exact title", linkKey: "amsMethod2" },
-            { label: "AMS Method 3 / confirm exact title", linkKey: "amsMethod3" },
-            { label: "ASTM", linkKey: "astm" },
-            { label: "HDM / confirm exact name", linkKey: "hdm" },
-            { label: "PDM Manufacturing Specs", linkKey: "pdmManufacturingSpecs" },
-          ],
-        },
-        {
-          title: "Something Went Wrong",
-          links: [
-            { label: "Instrument out of control - notify Specialist/FLS", linkKey: "issueInstrument" },
-            { label: "SQC issue - follow procedure / data handling path", linkKey: "issueSqc" },
-            { label: "Method discrepancy - stop and notify Specialist/FLS", linkKey: "issueMethod" },
-            { label: "Sample or lot issue - verify before entering data", linkKey: "issueSample" },
-            { label: "Data entry issue - use approved correction/data handling process", linkKey: "issueDataEntry" },
           ],
         },
       ];
@@ -468,11 +433,11 @@
       */
       const TEST_GROUPS = [
         {
-          heading: "A-1 / Film / TDA",
+          heading: "A-1 / Film / TDA / PVI",
           tests: [
-            { label: "PBI / confirm exact procedure name", linkKey: "pbi" },
-            { label: "TDA HD", linkKey: "tdaHd" },
-            { label: "TDA LD", linkKey: "tdaLd" },
+            { label: "PVI", linkKey: "pbi" },
+            { label: "TDA", linkKey: "tdaHd" },
+            { label: "Film", linkKey: "tdaLd" },
           ],
         },
         {
@@ -480,14 +445,14 @@
           tests: [
             { label: "Melt Index", linkKey: "meltIndex" },
             { label: "Density", linkKey: "density" },
-            { label: "Rheometer / confirm exact name", linkKey: "rheometer" },
+            { label: "Tan Delta", linkKey: "rheometer" },
           ],
         },
         {
           heading: "A-3 / Analytical",
           tests: [
             { label: "Headspace", linkKey: "headspace" },
-            { label: "XRS/XRF / confirm exact name", linkKey: "xrsXrf" },
+            { label: "XRF", linkKey: "xrsXrf" },
           ],
         },
       ];
@@ -499,7 +464,6 @@
         "Equipment Specialist",
         "Quality Data Specialist",
         "Security",
-        "Call 41 / No FLS Path",
       ];
 
       /* Each person selects one or more names from KEY_CONTACT_ROLES. */
@@ -539,13 +503,6 @@
           email: "",
           phone: "",
         },
-        {
-          roles: ["Call 41 / No FLS Path"],
-          name: "",
-          details: "Confirm exact phone/radio/dialing instructions",
-          email: "",
-          phone: "",
-        },
       ];
 
       /*
@@ -554,7 +511,7 @@
         HTML versions.
       */
       const DASHBOARD_DATA_SETTINGS = {
-        dataRevision: "2026-07-27-01",
+        dataRevision: "2026-07-30-03",
         schemaVersion: 1,
         maximumDataBytes: 500000,
       };
@@ -581,7 +538,7 @@
       This machine-readable copy preserves edited dashboard content in every
       downloaded version alongside the readable RESOURCE_LINKS block above.
     -->
-    <script id="dashboard-resource-data" type="application/json">{"schemaVersion":1,"revision":"2026-07-27-01","roles":{"technician":"Technician","fls":"FLS","equipmentSpecialist":"Equipment Specialist","chemist":"Chemist","systemSpecialist":"System Specialist"},"sections":{"technician":[{"title":"Safety / Site Safe","links":[{"label":"Site Safe / Site Safety Bookmark","linkKey":"siteSafe"},{"label":"Safety Procedures","linkKey":"safetyProcedures"},{"label":"Emergency / Security Procedures","linkKey":"emergencyProcedures"}]},{"title":"Procedures in OIMS","links":[{"label":"QC Lab - Test Methods / Site Procedures","linkKey":"oimsProcedures"},{"label":"CA-L-NP-025 - Process for Quality Reassurance","linkKey":"procQualityReassurance"},{"label":"CA-L-NP-027 - Sample Manager Data Management","linkKey":"sampleManagerDataMgmt"},{"label":"CA-L-NP-028 - Sample Manager Data Tracking and Reports","linkKey":"sampleManagerReports"},{"label":"Data Traceability / Data Handling Path","linkKey":"dataTraceability"},{"label":"Data Handling Guide","linkKey":"dataHandlingGuide"}]},{"title":"Training / Qualification","links":[{"label":"WebCAT","linkKey":"webcat"},{"label":"DIAF Training","linkKey":"diafTraining"},{"label":"QP&G Overview / Training","linkKey":"qpngTraining"},{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"PQE / Post Qualification Guide","linkKey":"pqeGuide"}]},{"title":"Quality / Audit Resources","links":[{"label":"QP&G PDF / Official Copy","linkKey":"qpngPdf"},{"label":"QP&G Presentation","linkKey":"qpngPresentation"},{"label":"DIAF Resource","linkKey":"diaf"},{"label":"Equipment Quality Report Resource","linkKey":"eqrResource"},{"label":"Data Handling Calculator","linkKey":"dataHandlingCalculator"},{"label":"Calculation Tools","linkKey":"calculationTools"}]},{"title":"Job Aids","links":[{"label":"Job Aids Folder","linkKey":"jobAidsFolder"},{"label":"PHHG 6 Reference Plate / confirm name","linkKey":"phhg6Plate"},{"label":"Melt Index Job Aid","linkKey":"miJobAid"},{"label":"Density Job Aid","linkKey":"densityJobAid"},{"label":"Headspace Job Aid","linkKey":"headspaceJobAid"}]},{"title":"Methods / References","links":[{"label":"AMS Procedures","linkKey":"amsProcedures"},{"label":"AMS Method 1 / confirm exact title","linkKey":"amsMethod1"},{"label":"AMS Method 2 / confirm exact title","linkKey":"amsMethod2"},{"label":"AMS Method 3 / confirm exact title","linkKey":"amsMethod3"},{"label":"ASTM","linkKey":"astm"},{"label":"HDM / confirm exact name","linkKey":"hdm"},{"label":"PDM Manufacturing Specs","linkKey":"pdmManufacturingSpecs"}]},{"title":"Lab Operations / Employee Tools","links":[{"label":"Munuros","linkKey":"munuros"},{"label":"Payroll","linkKey":"payroll"},{"label":"PPE Approval Forms","linkKey":"ppeApprovalForms"},{"label":"RTA Loss of Communications","linkKey":"rtaLossOfCommunications"}]},{"title":"Something Went Wrong","links":[{"label":"Instrument out of control - notify Specialist/FLS","linkKey":"issueInstrument"},{"label":"SQC issue - follow procedure / data handling path","linkKey":"issueSqc"},{"label":"Method discrepancy - stop and notify Specialist/FLS","linkKey":"issueMethod"},{"label":"Sample or lot issue - verify before entering data","linkKey":"issueSample"},{"label":"Data entry issue - use approved correction/data handling process","linkKey":"issueDataEntry"}]}],"fls":[{"title":"Lab FLS Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"Escalation / Shift Support Path","linkKey":"issueInstrument"},{"label":"Data Handling / Quality Reassurance Path","linkKey":"dataTraceability"},{"label":"Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining","linkKey":"flsCyberSecurityAwareness"}]},{"title":"Incident Reporting & Investigation","links":[{"label":"BTA-2020 - Injury and Illness Reporting","linkKey":"flsInjuryIllnessReporting"},{"label":"BTA-2010 - Incident and Near-Miss Reporting","linkKey":"flsIncidentNearMissReporting"}]},{"title":"Safety & Emergency Standards","links":[{"label":"MBPP-129 - Defeat of SSHE-Critical Devices and Safeguards","linkKey":"flsCriticalSafeguards"},{"label":"IH-3010 - Heat Stress","linkKey":"flsHeatStress"},{"label":"IH-5401 - Gas Testing Equipment","linkKey":"flsGasTestingEquipment"},{"label":"MBPP Emergency Response Manual - General","linkKey":"flsEmergencyResponseManual"}]}],"equipmentSpecialist":[{"title":"Equipment Specialist Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"Instrument Manual","linkKey":"equipmentInstrumentManual"},{"label":"Calibration Activities - Excel Sheet / PDF","linkKey":"equipmentCalibrationActivities"},{"label":"SQC / Quality Control Information - Data or Logistic Information","linkKey":"equipmentSqcQualityInfo"}]}],"chemist":[{"title":"Chemist Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"Quality Review / DIAF Resources","linkKey":"chemistQualityReview"},{"label":"QP&G / Audit Resources","linkKey":"qpngPdf"}]}],"systemSpecialist":[{"title":"System Specialist Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"System Support / Access Resources","linkKey":"systemSpecialistSystemsSupport"},{"label":"Sample Manager / LIMS Data Management","linkKey":"sampleManagerDataMgmt"}]}]},"quickAccessItems":[{"label":"Shift Logs","icon":"clipboard","items":[{"label":"A1","linkKey":"shiftLogA1"},{"label":"A2","linkKey":"shiftLogA2"},{"label":"A3","linkKey":"shiftLogA3"}]},{"label":"Calculation Tools","icon":"calculator","linkKey":"calculationTools"},{"label":"Lab Schedule","icon":"flask","linkKey":"labSchedule","items":[{"label":"Overtime Sign Up","linkKey":"overtimeSignUp"}]},{"label":"Overtime Standings","icon":"clock","linkKey":"overtimeStandings"},{"label":"PDM Manufacturing Specs","icon":"factory","linkKey":"pdmManufacturingSpecs"},{"label":"Equipment Quality Report","icon":"report","linkKey":"eqr"},{"label":"Data Handling Guide","icon":"data","linkKey":"dataHandlingGuide"}],"testGroups":[{"heading":"A-1 / Film / TDA","tests":[{"label":"PBI / confirm exact procedure name","linkKey":"pbi"},{"label":"TDA HD","linkKey":"tdaHd"},{"label":"TDA LD","linkKey":"tdaLd"}]},{"heading":"A-2 / Physical Properties","tests":[{"label":"Melt Index","linkKey":"meltIndex"},{"label":"Density","linkKey":"density"},{"label":"Rheometer / confirm exact name","linkKey":"rheometer"}]},{"heading":"A-3 / Analytical","tests":[{"label":"Headspace","linkKey":"headspace"},{"label":"XRS/XRF / confirm exact name","linkKey":"xrsXrf"}]}],"contactRoles":["FLS / Shift Supervisor","Chemist","Equipment Specialist","Quality Data Specialist","Security","Call 41 / No FLS Path"],"contacts":[{"roles":["FLS / Shift Supervisor"],"name":"TBD","details":"First call for supervision / no FLS path","email":"","phone":"TBD"},{"roles":["Chemist"],"name":"TBD","details":"Quality, DIAF, data/review questions","email":"","phone":"TBD"},{"roles":["Equipment Specialist"],"name":"TBD","details":"Instrument issues, job aids, maintenance questions","email":"","phone":"TBD"},{"roles":["Quality Data Specialist"],"name":"TBD","details":"Data handling, recheck/reassurance, lot/data questions","email":"","phone":"TBD"},{"roles":["Security"],"name":"TBD","details":"Site security / access / emergency support","email":"","phone":"TBD"},{"roles":["Call 41 / No FLS Path"],"name":"TBD","details":"Confirm exact phone/radio/dialing instructions","email":"","phone":"TBD"}],"dashboardCardOrder":{},"resources":[{"id":"siteSafe","name":"Site Safe / Site Safety Bookmark","description":"","primaryUrl":"","searchTerms":["Site Safe / Site Safety Bookmark"]},{"id":"safetyProcedures","name":"Safety Procedures","description":"","primaryUrl":"","searchTerms":["Safety Procedures"]},{"id":"emergencyProcedures","name":"Emergency / Security Procedures","description":"","primaryUrl":"","searchTerms":["Emergency / Security Procedures"]},{"id":"oimsProcedures","name":"QC Lab - Test Methods / Site Procedures","description":"","primaryUrl":"","searchTerms":["QC Lab - Test Methods / Site Procedures"]},{"id":"procQualityReassurance","name":"CA-L-NP-025 - Process for Quality Reassurance","description":"","primaryUrl":"","searchTerms":["CA-L-NP-025 - Process for Quality Reassurance"]},{"id":"sampleManagerDataMgmt","name":"Sample Manager / LIMS Data Management","description":"","primaryUrl":"","searchTerms":["Sample Manager / LIMS Data Management"]},{"id":"sampleManagerReports","name":"CA-L-NP-028 - Sample Manager Data Tracking and Reports","description":"","primaryUrl":"","searchTerms":["CA-L-NP-028 - Sample Manager Data Tracking and Reports"]},{"id":"dataTraceability","name":"Data Handling / Quality Reassurance Path","description":"","primaryUrl":"","searchTerms":["Data Handling / Quality Reassurance Path"]},{"id":"pbi","name":"PBI / confirm exact procedure name","description":"","primaryUrl":"","searchTerms":["PBI / confirm exact procedure name"]},{"id":"tdaHd","name":"TDA HD","description":"","primaryUrl":"","searchTerms":["TDA HD"]},{"id":"tdaLd","name":"TDA LD","description":"","primaryUrl":"","searchTerms":["TDA LD"]},{"id":"meltIndex","name":"Melt Index","description":"","primaryUrl":"","searchTerms":["Melt Index"]},{"id":"density","name":"Density","description":"","primaryUrl":"","searchTerms":["Density"]},{"id":"rheometer","name":"Rheometer / confirm exact name","description":"","primaryUrl":"","searchTerms":["Rheometer / confirm exact name"]},{"id":"headspace","name":"Headspace","description":"","primaryUrl":"","searchTerms":["Headspace"]},{"id":"xrsXrf","name":"XRS/XRF / confirm exact name","description":"","primaryUrl":"","searchTerms":["XRS/XRF / confirm exact name"]},{"id":"webcat","name":"WebCAT","description":"","primaryUrl":"","searchTerms":["WebCAT"]},{"id":"diafTraining","name":"DIAF Training","description":"","primaryUrl":"","searchTerms":["DIAF Training"]},{"id":"qpngTraining","name":"QP&G Overview / Training","description":"","primaryUrl":"","searchTerms":["QP&G Overview / Training"]},{"id":"eqr","name":"Equipment Quality Report (EQR)","description":"","primaryUrl":"","searchTerms":["Equipment Quality Report (EQR)"]},{"id":"pqeGuide","name":"PQE / Post Qualification Guide","description":"","primaryUrl":"","searchTerms":["PQE / Post Qualification Guide"]},{"id":"qpngPdf","name":"QP&G / Audit Resources","description":"","primaryUrl":"","searchTerms":["QP&G / Audit Resources"]},{"id":"qpngPresentation","name":"QP&G Presentation","description":"","primaryUrl":"","searchTerms":["QP&G Presentation"]},{"id":"diaf","name":"DIAF Resource","description":"","primaryUrl":"","searchTerms":["DIAF Resource"]},{"id":"eqrResource","name":"Equipment Quality Report Resource","description":"","primaryUrl":"","searchTerms":["Equipment Quality Report Resource"]},{"id":"dataHandlingCalculator","name":"Data Handling Calculator","description":"","primaryUrl":"","searchTerms":["Data Handling Calculator"]},{"id":"jobAidsFolder","name":"Job Aids Folder","description":"","primaryUrl":"","searchTerms":["Job Aids Folder"]},{"id":"phhg6Plate","name":"PHHG 6 Reference Plate / confirm name","description":"","primaryUrl":"","searchTerms":["PHHG 6 Reference Plate / confirm name"]},{"id":"miJobAid","name":"Melt Index Job Aid","description":"","primaryUrl":"","searchTerms":["Melt Index Job Aid"]},{"id":"densityJobAid","name":"Density Job Aid","description":"","primaryUrl":"","searchTerms":["Density Job Aid"]},{"id":"headspaceJobAid","name":"Headspace Job Aid","description":"","primaryUrl":"","searchTerms":["Headspace Job Aid"]},{"id":"amsProcedures","name":"AMS Procedures","description":"","primaryUrl":"","searchTerms":["AMS Procedures"]},{"id":"amsMethod1","name":"AMS Method 1 / confirm exact title","description":"","primaryUrl":"","searchTerms":["AMS Method 1 / confirm exact title"]},{"id":"amsMethod2","name":"AMS Method 2 / confirm exact title","description":"","primaryUrl":"","searchTerms":["AMS Method 2 / confirm exact title"]},{"id":"amsMethod3","name":"AMS Method 3 / confirm exact title","description":"","primaryUrl":"","searchTerms":["AMS Method 3 / confirm exact title"]},{"id":"astm","name":"ASTM","description":"","primaryUrl":"","searchTerms":["ASTM"]},{"id":"hdm","name":"HDM / confirm exact name","description":"","primaryUrl":"","searchTerms":["HDM / confirm exact name"]},{"id":"issueInstrument","name":"Escalation / Shift Support Path","description":"","primaryUrl":"","searchTerms":["Escalation / Shift Support Path"]},{"id":"issueSqc","name":"SQC issue - follow procedure / data handling path","description":"","primaryUrl":"","searchTerms":["SQC issue - follow procedure / data handling path"]},{"id":"issueMethod","name":"Method discrepancy - stop and notify Specialist/FLS","description":"","primaryUrl":"","searchTerms":["Method discrepancy - stop and notify Specialist/FLS"]},{"id":"issueSample","name":"Sample or lot issue - verify before entering data","description":"","primaryUrl":"","searchTerms":["Sample or lot issue - verify before entering data"]},{"id":"issueDataEntry","name":"Data entry issue - use approved correction/data handling process","description":"","primaryUrl":"","searchTerms":["Data entry issue - use approved correction/data handling process"]},{"id":"flsCyberSecurityAwareness","name":"Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining","description":"","primaryUrl":"","searchTerms":["Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining"]},{"id":"flsInjuryIllnessReporting","name":"BTA-2020 - Injury and Illness Reporting","description":"","primaryUrl":"","searchTerms":["BTA-2020 - Injury and Illness Reporting"]},{"id":"flsIncidentNearMissReporting","name":"BTA-2010 - Incident and Near-Miss Reporting","description":"","primaryUrl":"","searchTerms":["BTA-2010 - Incident and Near-Miss Reporting"]},{"id":"flsCriticalSafeguards","name":"MBPP-129 - Defeat of SSHE-Critical Devices and Safeguards","description":"","primaryUrl":"","searchTerms":["MBPP-129 - Defeat of SSHE-Critical Devices and Safeguards"]},{"id":"flsHeatStress","name":"IH-3010 - Heat Stress","description":"","primaryUrl":"","searchTerms":["IH-3010 - Heat Stress"]},{"id":"flsGasTestingEquipment","name":"IH-5401 - Gas Testing Equipment","description":"","primaryUrl":"","searchTerms":["IH-5401 - Gas Testing Equipment"]},{"id":"flsEmergencyResponseManual","name":"MBPP Emergency Response Manual - General","description":"","primaryUrl":"","searchTerms":["MBPP Emergency Response Manual - General"]},{"id":"equipmentInstrumentManual","name":"Instrument Manual","description":"","primaryUrl":"","searchTerms":["Instrument Manual"]},{"id":"equipmentCalibrationActivities","name":"Calibration Activities - Excel Sheet / PDF","description":"","primaryUrl":"","searchTerms":["Calibration Activities - Excel Sheet / PDF"]},{"id":"equipmentSqcQualityInfo","name":"SQC / Quality Control Information - Data or Logistic Information","description":"","primaryUrl":"","searchTerms":["SQC / Quality Control Information - Data or Logistic Information"]},{"id":"chemistQualityReview","name":"Quality Review / DIAF Resources","description":"","primaryUrl":"","searchTerms":["Quality Review / DIAF Resources"]},{"id":"systemSpecialistSystemsSupport","name":"System Support / Access Resources","description":"","primaryUrl":"","searchTerms":["System Support / Access Resources"]},{"id":"shiftLogA1","name":"Shift Log - A1","description":"","primaryUrl":"","searchTerms":["Shift Log - A1"]},{"id":"shiftLogA2","name":"Shift Log - A2","description":"","primaryUrl":"","searchTerms":["Shift Log - A2"]},{"id":"shiftLogA3","name":"Shift Log - A3","description":"","primaryUrl":"","searchTerms":["Shift Log - A3"]},{"id":"calculationTools","name":"Calculation Tools","description":"","primaryUrl":"","searchTerms":["Calculation Tools"]},{"id":"labSchedule","name":"Lab Schedule","description":"","primaryUrl":"","searchTerms":["Lab Schedule"]},{"id":"overtimeStandings","name":"Overtime Standings","description":"","primaryUrl":"","searchTerms":["Overtime Standings"]},{"id":"overtimeSignUp","name":"Overtime Sign Up","description":"","primaryUrl":"","searchTerms":["Overtime Sign Up"]},{"id":"pdmManufacturingSpecs","name":"PDM Manufacturing Specs","description":"","primaryUrl":"","searchTerms":["PDM Manufacturing Specs"]},{"id":"dataHandlingGuide","name":"Data Handling Guide","description":"","primaryUrl":"","searchTerms":["Data Handling Guide"]},{"id":"munuros","name":"Munuros","description":"","primaryUrl":"","searchTerms":["Munuros"]},{"id":"payroll","name":"Payroll","description":"","primaryUrl":"","searchTerms":["Payroll"]},{"id":"ppeApprovalForms","name":"PPE Approval Forms","description":"","primaryUrl":"","searchTerms":["PPE Approval Forms"]},{"id":"rtaLossOfCommunications","name":"RTA Loss of Communications","description":"","primaryUrl":"","searchTerms":["RTA Loss of Communications"]}]}</script>
+    <script id="dashboard-resource-data" type="application/json">{"schemaVersion":1,"revision":"2026-07-30-03","roles":{"technician":"Technician","fls":"FLS","equipmentSpecialist":"Equipment Specialist","chemist":"Chemist","systemSpecialist":"System Specialist"},"sections":{"technician":[{"title":"Safety","links":[{"label":"Safety Standards","linkKey":"safetyStandards"},{"label":"SS-128 Injury and Illness Reporting","linkKey":"ss128InjuryIllnessReporting"}]},{"title":"Procedures in OIMS","links":[{"label":"QC Lab - Test Methods / Site Procedures","linkKey":"oimsProcedures"},{"label":"CA-L-NP-025 - Process for Quality Reassurance","linkKey":"procQualityReassurance"},{"label":"CA-L-NP-027 - Sample Manager Data Management","linkKey":"sampleManagerDataMgmt"},{"label":"CA-L-NP-028 - Sample Manager Data Tracking and Reports","linkKey":"sampleManagerReports"},{"label":"Data Traceability / Data Handling Path","linkKey":"dataTraceability"},{"label":"Data Handling Guide","linkKey":"dataHandlingGuide"}]},{"title":"Training / Qualification","links":[{"label":"WebCAT","linkKey":"webcat"},{"label":"DIAF Training","linkKey":"diafTraining"},{"label":"QP&G Overview / Training","linkKey":"qpngTraining"},{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"}]},{"title":"Quality Resources","links":[{"label":"QP&G Flowchart","linkKey":"qpngPdf"},{"label":"DIAF Resource","linkKey":"diaf"},{"label":"Calculation Tools","linkKey":"calculationTools"}]},{"title":"Job Aids","links":[{"label":"Job Aids Folder","linkKey":"jobAidsFolder"},{"label":"Melt Index Job Aid","linkKey":"miJobAid"},{"label":"Density Job Aid","linkKey":"densityJobAid"},{"label":"Headspace Job Aid","linkKey":"headspaceJobAid"}]},{"title":"Lab Operations / Employee Tools","links":[{"label":"Munuros","linkKey":"munuros"},{"label":"Payroll","linkKey":"payroll"},{"label":"RTA Loss of Communications","linkKey":"rtaLossOfCommunications"},{"label":"PPE Approval Forms","linkKey":"ppeApprovalForms"},{"label":"Lab Library","linkKey":"labLibrary"},{"label":"Record Retention","linkKey":"recordRetention"}]}],"fls":[{"title":"Lab FLS Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"Escalation / Shift Support Path","linkKey":"issueInstrument"},{"label":"Data Handling / Quality Reassurance Path","linkKey":"dataTraceability"},{"label":"Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining","linkKey":"flsCyberSecurityAwareness"}]},{"title":"Incident Reporting & Investigation","links":[{"label":"BTA-2020 - Injury and Illness Reporting","linkKey":"flsInjuryIllnessReporting"},{"label":"BTA-2010 - Incident and Near-Miss Reporting","linkKey":"flsIncidentNearMissReporting"}]},{"title":"Safety & Emergency Standards","links":[{"label":"MBPP-129 - Defeat of SSHE-Critical Devices and Safeguards","linkKey":"flsCriticalSafeguards"},{"label":"IH-3010 - Heat Stress","linkKey":"flsHeatStress"},{"label":"IH-5401 - Gas Testing Equipment","linkKey":"flsGasTestingEquipment"},{"label":"MBPP Emergency Response Manual - General","linkKey":"flsEmergencyResponseManual"}]}],"equipmentSpecialist":[{"title":"Equipment Specialist Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"Instrument Manual","linkKey":"equipmentInstrumentManual"},{"label":"Calibration Activities - Excel Sheet / PDF","linkKey":"equipmentCalibrationActivities"},{"label":"SQC / Quality Control Information - Data or Logistic Information","linkKey":"equipmentSqcQualityInfo"}]}],"chemist":[{"title":"Chemist Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"Quality Review / DIAF Resources","linkKey":"chemistQualityReview"},{"label":"QP&G / Audit Resources","linkKey":"qpngPdf"}]}],"systemSpecialist":[{"title":"System Specialist Resources","links":[{"label":"Equipment Quality Report (EQR)","linkKey":"eqr"},{"label":"System Support / Access Resources","linkKey":"systemSpecialistSystemsSupport"},{"label":"Sample Manager / LIMS Data Management","linkKey":"sampleManagerDataMgmt"}]}]},"quickAccessItems":[{"label":"Shift Logs","icon":"clipboard","items":[{"label":"A1","linkKey":"shiftLogA1"},{"label":"A2","linkKey":"shiftLogA2"},{"label":"A3","linkKey":"shiftLogA3"}]},{"label":"Calculation Tools","icon":"calculator","linkKey":"calculationTools"},{"label":"Lab Schedule","icon":"flask","linkKey":"labSchedule","items":[{"label":"Overtime Sign Up","linkKey":"overtimeSignUp"}]},{"label":"Overtime Standings","icon":"clock","linkKey":"overtimeStandings"},{"label":"PDM Manufacturing Specs","icon":"factory","linkKey":"pdmManufacturingSpecs"},{"label":"Equipment Quality Report","icon":"report","linkKey":"eqr"},{"label":"Data Handling Guide","icon":"data","linkKey":"dataHandlingGuide"}],"testGroups":[{"heading":"A-1 / Film / TDA / PVI","tests":[{"label":"PVI","linkKey":"pbi"},{"label":"TDA","linkKey":"tdaHd"},{"label":"Film","linkKey":"tdaLd"}]},{"heading":"A-2 / Physical Properties","tests":[{"label":"Melt Index","linkKey":"meltIndex"},{"label":"Density","linkKey":"density"},{"label":"Tan Delta","linkKey":"rheometer"}]},{"heading":"A-3 / Analytical","tests":[{"label":"Headspace","linkKey":"headspace"},{"label":"XRF","linkKey":"xrsXrf"}]}],"contactRoles":["FLS / Shift Supervisor","Chemist","Equipment Specialist","Quality Data Specialist","Security"],"contacts":[{"roles":["FLS / Shift Supervisor"],"name":"TBD","details":"First call for supervision / no FLS path","email":"","phone":"TBD"},{"roles":["Chemist"],"name":"TBD","details":"Quality, DIAF, data/review questions","email":"","phone":"TBD"},{"roles":["Equipment Specialist"],"name":"TBD","details":"Instrument issues, job aids, maintenance questions","email":"","phone":"TBD"},{"roles":["Quality Data Specialist"],"name":"TBD","details":"Data handling, recheck/reassurance, lot/data questions","email":"","phone":"TBD"},{"roles":["Security"],"name":"TBD","details":"Site security / access / emergency support","email":"","phone":"TBD"}],"dashboardCardOrder":{},"resources":[{"id":"oimsProcedures","name":"QC Lab - Test Methods / Site Procedures","description":"","primaryUrl":"","searchTerms":["QC Lab - Test Methods / Site Procedures"]},{"id":"procQualityReassurance","name":"CA-L-NP-025 - Process for Quality Reassurance","description":"","primaryUrl":"","searchTerms":["CA-L-NP-025 - Process for Quality Reassurance"]},{"id":"sampleManagerDataMgmt","name":"Sample Manager / LIMS Data Management","description":"","primaryUrl":"","searchTerms":["Sample Manager / LIMS Data Management"]},{"id":"sampleManagerReports","name":"CA-L-NP-028 - Sample Manager Data Tracking and Reports","description":"","primaryUrl":"","searchTerms":["CA-L-NP-028 - Sample Manager Data Tracking and Reports"]},{"id":"dataTraceability","name":"Data Handling / Quality Reassurance Path","description":"","primaryUrl":"","searchTerms":["Data Handling / Quality Reassurance Path"]},{"id":"pbi","name":"PVI","description":"","primaryUrl":"","searchTerms":["PVI"]},{"id":"tdaHd","name":"TDA","description":"","primaryUrl":"","searchTerms":["TDA"]},{"id":"tdaLd","name":"Film","description":"","primaryUrl":"","searchTerms":["Film"]},{"id":"meltIndex","name":"Melt Index","description":"","primaryUrl":"","searchTerms":["Melt Index"]},{"id":"density","name":"Density","description":"","primaryUrl":"","searchTerms":["Density"]},{"id":"rheometer","name":"Tan Delta","description":"","primaryUrl":"","searchTerms":["Tan Delta"]},{"id":"headspace","name":"Headspace","description":"","primaryUrl":"","searchTerms":["Headspace"]},{"id":"xrsXrf","name":"XRF","description":"","primaryUrl":"","searchTerms":["XRF"]},{"id":"webcat","name":"WebCAT","description":"","primaryUrl":"","searchTerms":["WebCAT"]},{"id":"diafTraining","name":"DIAF Training","description":"","primaryUrl":"","searchTerms":["DIAF Training"]},{"id":"qpngTraining","name":"QP&G Overview / Training","description":"","primaryUrl":"","searchTerms":["QP&G Overview / Training"]},{"id":"eqr","name":"Equipment Quality Report (EQR)","description":"","primaryUrl":"","searchTerms":["Equipment Quality Report (EQR)"]},{"id":"qpngPdf","name":"QP&G Flowchart","description":"","primaryUrl":"","searchTerms":["QP&G Flowchart"]},{"id":"diaf","name":"DIAF Resource","description":"","primaryUrl":"","searchTerms":["DIAF Resource"]},{"id":"jobAidsFolder","name":"Job Aids Folder","description":"","primaryUrl":"","searchTerms":["Job Aids Folder"]},{"id":"miJobAid","name":"Melt Index Job Aid","description":"","primaryUrl":"","searchTerms":["Melt Index Job Aid"]},{"id":"densityJobAid","name":"Density Job Aid","description":"","primaryUrl":"","searchTerms":["Density Job Aid"]},{"id":"headspaceJobAid","name":"Headspace Job Aid","description":"","primaryUrl":"","searchTerms":["Headspace Job Aid"]},{"id":"amsProcedures","name":"AMS Procedures","description":"","primaryUrl":"","searchTerms":["AMS Procedures"]},{"id":"amsMethod1","name":"AMS Method 1 / confirm exact title","description":"","primaryUrl":"","searchTerms":["AMS Method 1 / confirm exact title"]},{"id":"amsMethod2","name":"AMS Method 2 / confirm exact title","description":"","primaryUrl":"","searchTerms":["AMS Method 2 / confirm exact title"]},{"id":"amsMethod3","name":"AMS Method 3 / confirm exact title","description":"","primaryUrl":"","searchTerms":["AMS Method 3 / confirm exact title"]},{"id":"astm","name":"ASTM","description":"","primaryUrl":"","searchTerms":["ASTM"]},{"id":"hdm","name":"HDM / confirm exact name","description":"","primaryUrl":"","searchTerms":["HDM / confirm exact name"]},{"id":"issueInstrument","name":"Escalation / Shift Support Path","description":"","primaryUrl":"","searchTerms":["Escalation / Shift Support Path"]},{"id":"issueSqc","name":"SQC issue - follow procedure / data handling path","description":"","primaryUrl":"","searchTerms":["SQC issue - follow procedure / data handling path"]},{"id":"issueMethod","name":"Method discrepancy - stop and notify Specialist/FLS","description":"","primaryUrl":"","searchTerms":["Method discrepancy - stop and notify Specialist/FLS"]},{"id":"issueSample","name":"Sample or lot issue - verify before entering data","description":"","primaryUrl":"","searchTerms":["Sample or lot issue - verify before entering data"]},{"id":"issueDataEntry","name":"Data entry issue - use approved correction/data handling process","description":"","primaryUrl":"","searchTerms":["Data entry issue - use approved correction/data handling process"]},{"id":"flsCyberSecurityAwareness","name":"Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining","description":"","primaryUrl":"","searchTerms":["Cyber Security Awareness (CSA 2025) - SAP SuccessFactors Phishing Retraining"]},{"id":"flsInjuryIllnessReporting","name":"BTA-2020 - Injury and Illness Reporting","description":"","primaryUrl":"","searchTerms":["BTA-2020 - Injury and Illness Reporting"]},{"id":"flsIncidentNearMissReporting","name":"BTA-2010 - Incident and Near-Miss Reporting","description":"","primaryUrl":"","searchTerms":["BTA-2010 - Incident and Near-Miss Reporting"]},{"id":"flsCriticalSafeguards","name":"MBPP-129 - Defeat of SSHE-Critical Devices and Safeguards","description":"","primaryUrl":"","searchTerms":["MBPP-129 - Defeat of SSHE-Critical Devices and Safeguards"]},{"id":"flsHeatStress","name":"IH-3010 - Heat Stress","description":"","primaryUrl":"","searchTerms":["IH-3010 - Heat Stress"]},{"id":"flsGasTestingEquipment","name":"IH-5401 - Gas Testing Equipment","description":"","primaryUrl":"","searchTerms":["IH-5401 - Gas Testing Equipment"]},{"id":"flsEmergencyResponseManual","name":"MBPP Emergency Response Manual - General","description":"","primaryUrl":"","searchTerms":["MBPP Emergency Response Manual - General"]},{"id":"equipmentInstrumentManual","name":"Instrument Manual","description":"","primaryUrl":"","searchTerms":["Instrument Manual"]},{"id":"equipmentCalibrationActivities","name":"Calibration Activities - Excel Sheet / PDF","description":"","primaryUrl":"","searchTerms":["Calibration Activities - Excel Sheet / PDF"]},{"id":"equipmentSqcQualityInfo","name":"SQC / Quality Control Information - Data or Logistic Information","description":"","primaryUrl":"","searchTerms":["SQC / Quality Control Information - Data or Logistic Information"]},{"id":"chemistQualityReview","name":"Quality Review / DIAF Resources","description":"","primaryUrl":"","searchTerms":["Quality Review / DIAF Resources"]},{"id":"systemSpecialistSystemsSupport","name":"System Support / Access Resources","description":"","primaryUrl":"","searchTerms":["System Support / Access Resources"]},{"id":"shiftLogA1","name":"Shift Log - A1","description":"","primaryUrl":"","searchTerms":["Shift Log - A1"]},{"id":"shiftLogA2","name":"Shift Log - A2","description":"","primaryUrl":"","searchTerms":["Shift Log - A2"]},{"id":"shiftLogA3","name":"Shift Log - A3","description":"","primaryUrl":"","searchTerms":["Shift Log - A3"]},{"id":"calculationTools","name":"Calculation Tools","description":"","primaryUrl":"","searchTerms":["Calculation Tools"]},{"id":"labSchedule","name":"Lab Schedule","description":"","primaryUrl":"","searchTerms":["Lab Schedule"]},{"id":"overtimeStandings","name":"Overtime Standings","description":"","primaryUrl":"","searchTerms":["Overtime Standings"]},{"id":"overtimeSignUp","name":"Overtime Sign Up","description":"","primaryUrl":"","searchTerms":["Overtime Sign Up"]},{"id":"pdmManufacturingSpecs","name":"PDM Manufacturing Specs","description":"","primaryUrl":"","searchTerms":["PDM Manufacturing Specs"]},{"id":"dataHandlingGuide","name":"Data Handling Guide","description":"","primaryUrl":"","searchTerms":["Data Handling Guide"]},{"id":"munuros","name":"Munuros","description":"","primaryUrl":"","searchTerms":["Munuros"]},{"id":"payroll","name":"Payroll","description":"","primaryUrl":"","searchTerms":["Payroll"]},{"id":"ppeApprovalForms","name":"PPE Approval Forms","description":"","primaryUrl":"","searchTerms":["PPE Approval Forms"]},{"id":"rtaLossOfCommunications","name":"RTA Loss of Communications","description":"","primaryUrl":"","searchTerms":["RTA Loss of Communications"]},{"id":"labLibrary","name":"Lab Library","description":"","primaryUrl":"","searchTerms":["Lab Library"]},{"id":"recordRetention","name":"Record Retention","description":"","primaryUrl":"","searchTerms":["Record Retention"]},{"id":"safetyStandards","name":"Safety Standards","description":"","primaryUrl":"","searchTerms":["Safety Standards"]},{"id":"ss128InjuryIllnessReporting","name":"SS-128 Injury and Illness Reporting","description":"","primaryUrl":"","searchTerms":["SS-128 Injury and Illness Reporting"]}]}</script>
     <style>
       /*
         STYLE SECTION:
@@ -609,8 +566,15 @@
         box-sizing: border-box;
       }
 
+      html {
+        min-height: 100%;
+      }
+
       body {
+        display: flex;
+        min-height: 100vh;
         margin: 0;
+        flex-direction: column;
         background: var(--paper);
         color: var(--ink);
         font-family: "EMprint", Aptos, "Segoe UI", Arial, sans-serif;
@@ -3579,7 +3543,9 @@
 
       footer {
         display: flex;
+        flex: 0 0 var(--footer-height);
         height: var(--footer-height);
+        margin-top: auto;
         padding: 18px 20px;
         align-items: center;
         justify-content: center;
@@ -4927,21 +4893,16 @@
     <!-- Main dashboard cards. The JavaScript below turns each card into a dropdown. -->
     <div class="container">
       <div class="card">
-        <h3>Safety / Site Safe</h3>
+        <h3>Safety</h3>
         <ul>
           <li>
-            <a class="resource-link" data-link="siteSafe" href="#"
-              >Site Safe / Site Safety Bookmark</a
+            <a class="resource-link" data-link="safetyStandards" href="#"
+              >Safety Standards</a
             >
           </li>
           <li>
-            <a class="resource-link" data-link="safetyProcedures" href="#"
-              >Safety Procedures</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="emergencyProcedures" href="#"
-              >Emergency / Security Procedures</a
+            <a class="resource-link" data-link="ss128InjuryIllnessReporting" href="#"
+              >SS-128 Injury and Illness Reporting</a
             >
           </li>
         </ul>
@@ -4975,6 +4936,11 @@
               >Data Traceability / Data Handling Path</a
             >
           </li>
+          <li>
+            <a class="resource-link" data-link="dataHandlingGuide" href="#"
+              >Data Handling Guide</a
+            >
+          </li>
         </ul>
       </div>
 
@@ -4999,39 +4965,28 @@
               >QP&amp;G Overview / Training</a
             >
           </li>
-          <li><a class="resource-link" data-link="eqr" href="#">EQR</a></li>
           <li>
-            <a class="resource-link" data-link="pqeGuide" href="#"
-              >PQE / Post Qualification Guide</a
+            <a class="resource-link" data-link="eqr" href="#"
+              >Equipment Quality Report (EQR)</a
             >
           </li>
         </ul>
       </div>
 
       <div class="card">
-        <h3>Quality / Audit Resources</h3>
+        <h3>Quality Resources</h3>
         <ul>
           <li>
             <a class="resource-link" data-link="qpngPdf" href="#"
-              >QP&amp;G PDF / Official Copy</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="qpngPresentation" href="#"
-              >QP&amp;G Presentation</a
+              >QP&amp;G Flowchart</a
             >
           </li>
           <li>
             <a class="resource-link" data-link="diaf" href="#">DIAF Resource</a>
           </li>
           <li>
-            <a class="resource-link" data-link="eqrResource" href="#"
-              >EQR Resource</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="dataHandlingCalculator" href="#"
-              >Data Handling Calculator</a
+            <a class="resource-link" data-link="calculationTools" href="#"
+              >Calculation Tools</a
             >
           </li>
         </ul>
@@ -5043,11 +4998,6 @@
           <li>
             <a class="resource-link" data-link="jobAidsFolder" href="#"
               >Job Aids Folder</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="phhg6Plate" href="#"
-              >PHHG 6 Reference Plate / confirm name</a
             >
           </li>
           <li>
@@ -5069,54 +5019,10 @@
       </div>
 
       <div class="card">
-        <h3>Methods / References</h3>
-        <ul>
-          <li>
-            <a class="resource-link" data-link="amsProcedures" href="#"
-              >AMS Procedures</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="amsMethod1" href="#"
-              >AMS Method 1 / confirm exact title</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="amsMethod2" href="#"
-              >AMS Method 2 / confirm exact title</a
-            >
-          </li>
-          <li>
-            <a class="resource-link" data-link="amsMethod3" href="#"
-              >AMS Method 3 / confirm exact title</a
-            >
-          </li>
-          <li><a class="resource-link" data-link="astm" href="#">ASTM</a></li>
-          <li>
-            <a class="resource-link" data-link="hdm" href="#"
-              >HDM / confirm exact name</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <div class="card">
         <h3>Key Contacts</h3>
         <div class="contact-grid" id="contactGrid"></div>
       </div>
 
-      <div class="card">
-        <h3>Something Went Wrong</h3>
-        <ul>
-          <li>Instrument out of control - notify Specialist/FLS</li>
-          <li>SQC issue - follow procedure / data handling path</li>
-          <li>Method discrepancy - stop and notify Specialist/FLS</li>
-          <li>Sample or lot issue - verify before entering data</li>
-          <li>
-            Data entry issue - use approved correction/data handling process
-          </li>
-        </ul>
-      </div>
     </div>
 
     <footer id="pageFooter" aria-label="ExxonMobil"></footer>
@@ -5142,11 +5048,39 @@
       /* Preserve direct text-editor changes before the embedded dataset is loaded. */
       const DIRECT_RESOURCE_LINKS = Object.assign({}, RESOURCE_LINKS);
       const DIRECT_RESOURCE_LINK_OVERRIDES = {};
-      const STORAGE_NAMESPACE = String(SAVE_PROFILE.storageNamespace || "")
+      const EXPLICIT_STORAGE_NAMESPACE = String(SAVE_PROFILE.storageNamespace || "")
         .replace(/[^A-Za-z0-9_-]/g, "")
         .slice(0, 80);
+
+      /*
+        Keep browser edits isolated to this exact HTML file and release.
+        The file path separates side-by-side copies, while the source fingerprint
+        separates a newly downloaded release even when it replaces an older file
+        at the same path. Published files may still supply their own namespace.
+      */
+      function hashStorageIdentity(value) {
+        let hash = 2166136261;
+        for (let index = 0; index < value.length; index += 1) {
+          hash ^= value.charCodeAt(index);
+          hash = Math.imul(hash, 16777619);
+        }
+        return (hash >>> 0).toString(36);
+      }
+
+      function getStorageFileLocation() {
+        try {
+          return decodeURIComponent(location.pathname || location.href || "");
+        } catch (error) {
+          return location.pathname || location.href || "";
+        }
+      }
+
+      const STORAGE_FILE_LOCATION = getStorageFileLocation();
+      const STORAGE_NAMESPACE = EXPLICIT_STORAGE_NAMESPACE
+        ? EXPLICIT_STORAGE_NAMESPACE + "-" + hashStorageIdentity(STORAGE_FILE_LOCATION)
+        : "file-" + hashStorageIdentity(STORAGE_FILE_LOCATION + "\n" + ORIGINAL_HTML);
       const storageKey = (baseKey) =>
-        STORAGE_NAMESPACE ? baseKey + ":" + STORAGE_NAMESPACE : baseKey;
+        baseKey + ":" + STORAGE_NAMESPACE;
       const readBrowserStorage = (key) => {
         try {
           return localStorage.getItem(key);
@@ -6323,26 +6257,48 @@
           (item) => !quickAccessOnlyKeys.has(item.linkKey),
         );
 
-        if (
-          !employeeTools.links.some(
-            (item) => item.linkKey === "rtaLossOfCommunications",
-          )
-        ) {
-          employeeTools.links.push({
+        const photoPlaceholderOrder = [
+          { label: "Munuros", linkKey: "munuros" },
+          { label: "Payroll", linkKey: "payroll" },
+          {
             label: "RTA Loss of Communications",
             linkKey: "rtaLossOfCommunications",
-          });
-        }
-        if (!Object.hasOwn(RESOURCE_LINKS, "rtaLossOfCommunications")) {
-          RESOURCE_LINKS.rtaLossOfCommunications = "";
-        }
-        if (!RESOURCE_DETAILS.rtaLossOfCommunications) {
-          RESOURCE_DETAILS.rtaLossOfCommunications = {
-            name: "RTA Loss of Communications",
-            description: "",
-            searchTerms: ["RTA Loss of Communications"],
-          };
-        }
+          },
+          { label: "PPE Approval Forms", linkKey: "ppeApprovalForms" },
+          { label: "Lab Library", linkKey: "labLibrary" },
+          { label: "Record Retention", linkKey: "recordRetention" },
+        ];
+        const photoPlaceholderKeys = new Set(
+          photoPlaceholderOrder.map((item) => item.linkKey),
+        );
+        const extraEmployeeTools = employeeTools.links.filter(
+          (item) => !photoPlaceholderKeys.has(item.linkKey),
+        );
+
+        employeeTools.links = photoPlaceholderOrder
+          .map((placeholder) => {
+            const existing = employeeTools.links.find(
+              (item) => item.linkKey === placeholder.linkKey,
+            );
+            return { ...existing, ...placeholder };
+          })
+          .concat(extraEmployeeTools);
+
+        photoPlaceholderOrder.forEach((placeholder) => {
+          if (!Object.hasOwn(RESOURCE_LINKS, placeholder.linkKey)) {
+            RESOURCE_LINKS[placeholder.linkKey] = "";
+          }
+          if (!RESOURCE_DETAILS[placeholder.linkKey]) {
+            RESOURCE_DETAILS[placeholder.linkKey] = {
+              name: placeholder.label,
+              description: "",
+              searchTerms: [placeholder.label],
+            };
+          } else {
+            RESOURCE_DETAILS[placeholder.linkKey].name = placeholder.label;
+            RESOURCE_DETAILS[placeholder.linkKey].searchTerms = [placeholder.label];
+          }
+        });
 
         const currentIndex = sections.indexOf(employeeTools);
         if (currentIndex !== 3) {
