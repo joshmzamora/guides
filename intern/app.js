@@ -1780,7 +1780,7 @@ function showGuideSelector() {
   activeGuide = null;
   delete document.body.dataset.guide;
   document.title = "ExxonMobil MBPP Lab Guides";
-  guideBrandLabel.textContent = "MBPP Lab Learning Center";
+  guideBrandLabel.textContent = "MBPP Lab Onboarding";
   homeTitle.textContent = "Selected MBPP lab guide";
   topbarBrand.setAttribute("aria-label", "Return to guide selection");
   topbarSwitchButton.hidden = true;

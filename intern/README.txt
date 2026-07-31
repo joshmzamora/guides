@@ -1,4 +1,4 @@
-MBPP Lab Learning Center
+MBPP Lab Onboarding
 
 This is a website.
 
